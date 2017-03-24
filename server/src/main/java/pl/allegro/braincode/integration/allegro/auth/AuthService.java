@@ -11,4 +11,10 @@ public class AuthService {
     private String apiKey = "eyJjbGllbnRJZCI6ImE0MWY1YjJhLThlODctNGI4Yi1iNmZlLTc0Y2M3NjM3MjBkNyJ9.ogVV_a9RUOMa1OWFZOTmgTkdk-U37vTliDCBUQ1YySU=";
     private String grantType = "client_credentials";
 
+    public Call<AccessToken> auth() {
+        AuthAllegroService service = AuthServiceGenerator.createService(AuthAllegroService.class, clientID, clientSecret);
+        Call<AccessToken> auth = service.auth(grantType);
+        return auth;
+    }
+
 }
