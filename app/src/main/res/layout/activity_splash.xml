@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:clickable="true"
-    tools:context="pl.example.allegro.braincode.activities.MainActivity">
+    tools:context="pl.allegro.braincode.activities.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher" />
 
-        <pl.example.allegro.braincode.waveview.WaveTextView
+        <pl.allegro.braincode.waveview.WaveTextView
             android:id="@+id/wave_ale_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/splash_app_name" />
 
-        <pl.example.allegro.braincode.waveview.WaveTextView
+        <pl.allegro.braincode.waveview.WaveTextView
             android:id="@+id/wave_author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
