@@ -1,4 +1,4 @@
-package pl.allegro.braincode.integration;
+package pl.allegro.braincode.category;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +7,7 @@ import pl.allegro.braincode.integration.allegro.auth.ServiceGenerator;
 import pl.allegro.braincode.integration.allegro.category.CategoriesService;
 import pl.allegro.braincode.integration.allegro.category.Category;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.List;
 
@@ -14,22 +15,14 @@ import java.util.List;
 public class CategoriesRepository {
 
     private final AuthService authService;
+    private CategoriesService service = ServiceGenerator.createService(CategoriesService.class);
 
     @Autowired
     public CategoriesRepository(AuthService authService) {
         this.authService = authService;
     }
 
-    public List<Category> getCategories() {
-        return getCategories(null);
-    }
-
-    public List<Category> getCategories(long parentCategoryId) {
-        return getCategories(String.valueOf(parentCategoryId));
-    }
-
-    public List<Category> getCategories(String parentCategoryId) {
-        CategoriesService service = ServiceGenerator.createService(CategoriesService.class);
+    public List<Category> getCategories(Long parentCategoryId) {
         try {
             return service
                     .getCategories(authService.auth().getAccessToken(), parentCategoryId)

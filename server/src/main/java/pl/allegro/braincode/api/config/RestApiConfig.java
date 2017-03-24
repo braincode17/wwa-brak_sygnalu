@@ -1,5 +1,6 @@
 package pl.allegro.braincode.api.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -19,5 +20,10 @@ public class RestApiConfig {
                 .apis(RequestHandlerSelectors.basePackage("pl.allegro.braincode.api"))
                 .paths(PathSelectors.any())
                 .build();
+    }
+
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
     }
 }
