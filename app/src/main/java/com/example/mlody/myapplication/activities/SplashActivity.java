@@ -40,10 +40,10 @@ public class SplashActivity extends BaseActivity {
     private void initIntro() {
         // set fancy typeface
         waveAleTv.setTypeface(Typefaces.get(this, "Comfortaa-Regular.ttf"));
-        waveAleTv.setWaveImage(getResources().getDrawable(R.mipmap.wave_orange));
+        waveAleTv.setWaveImage(getResources().getDrawable(R.mipmap.wave_orange,null));
 
         waveAuthor.setTypeface(Typefaces.get(this, "Comfortaa-Light.ttf"));
-        waveAuthor.setWaveImage(getResources().getDrawable(R.mipmap.wave_orange));
+        waveAuthor.setWaveImage(getResources().getDrawable(R.mipmap.wave_orange,null));
 
         // start animation
         Wave waveAle = new Wave();
