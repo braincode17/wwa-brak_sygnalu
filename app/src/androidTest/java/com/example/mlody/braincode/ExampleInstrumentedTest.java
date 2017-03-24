@@ -1,4 +1,4 @@
-package com.example.mlody.myapplication;
+package com.example.mlody.braincode;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
