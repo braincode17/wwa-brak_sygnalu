@@ -9,4 +9,8 @@
     <color name="secondary_text">#8C000000</color>
     <color name="hint_text">#66000000</color>
     <color name="line_divider">#1A000000</color>
+    <color name="highlight">#99CCFF</color>
+    <color name="androidGreen">#8bab2e</color>
+    <color name="black">#212121</color>
+    <color name="divider">#D9FF4081</color>
 </resources>

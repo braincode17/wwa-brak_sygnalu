@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import pl.allegro.braincode.MainActivity;
+import pl.allegro.braincode.activities.MainActivity;
 import pl.allegro.braincode.R;
 
 public class GetSuggestionsFragment extends Fragment {

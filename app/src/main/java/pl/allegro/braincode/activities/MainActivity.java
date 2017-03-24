@@ -1,21 +1,35 @@
-package pl.allegro.braincode;
+package pl.allegro.braincode.activities;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import pl.allegro.braincode.R;
 import pl.allegro.braincode.suggestions.PagerFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         showWizardFragment();
+    }
+
+    @Override
+    protected int onActivityContentView() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected int getFragmentContainer() {
+        return R.id.fragment_container;
+    }
+
+    @Override
+    protected boolean onActivityBackPressed() {
+        return false;
     }
 
     public void showWizardFragment() {
@@ -25,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private void showFragment(Fragment fragment, boolean addToBackStack) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.frame, fragment);
+        transaction.replace(R.id.fragment_container, fragment);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
         if (addToBackStack) {
             transaction.addToBackStack(null);

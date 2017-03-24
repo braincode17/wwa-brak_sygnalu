@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pl.allegro.braincode.MainActivity;
+import pl.allegro.braincode.activities.MainActivity;
 import pl.allegro.braincode.R;
 
 public class SelectCategoryFragment extends Fragment {

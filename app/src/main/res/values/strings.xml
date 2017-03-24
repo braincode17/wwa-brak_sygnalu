@@ -2,4 +2,6 @@
     <string name="app_name">Price suggestion</string>
     <string name="choose_category">Choose category:</string>
     <string name="search">Search</string>
+    <string name="under_title">byBrakSygnału</string>
+    <string name="title">AllegroTracker</string>
 </resources>

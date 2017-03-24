@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pl.allegro.braincode.MainActivity;
+import pl.allegro.braincode.activities.MainActivity;
 
 import me.relex.circleindicator.CircleIndicator;
 import pl.allegro.braincode.R;
