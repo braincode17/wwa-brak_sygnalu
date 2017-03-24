@@ -1,4 +1,4 @@
-package com.example.mlody.myapplication;
+package pl.allegro.braincode;
 
 import org.junit.Test;
 
