@@ -28,7 +28,6 @@ public class MainActivity extends BaseActivity {
         return false;
     }
 
-
     void showStartFragment() {
         StartFragment fragment = StartFragment.newInstance();
         showFragment(fragment, fragment.getFragmentTag(), false);

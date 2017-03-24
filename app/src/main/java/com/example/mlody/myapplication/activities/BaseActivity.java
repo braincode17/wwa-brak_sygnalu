@@ -25,7 +25,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (iContentView == 0) {
             throw new RuntimeException("onActivityContentView() is not set");
         }
-
     }
 
     @Override

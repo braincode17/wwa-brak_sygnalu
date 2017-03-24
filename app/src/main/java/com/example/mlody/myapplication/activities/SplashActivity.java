@@ -45,12 +45,11 @@ public class SplashActivity extends BaseActivity {
         waveAuthor.setTypeface(Typefaces.get(this, "Comfortaa-Light.ttf"));
         waveAuthor.setWaveImage(getResources().getDrawable(R.mipmap.wave_orange));
 
-
         // start animation
         Wave waveAle = new Wave();
         waveAle.start(waveAleTv);
 
-        Wave waveKlikegro = new Wave();
+        Wave titleWave = new Wave();
 
         waveAuthor.postDelayed(new Runnable() {
             @Override
@@ -59,6 +58,6 @@ public class SplashActivity extends BaseActivity {
             }
         }, Wave.TIME_WAVE_ANIMATION + 400);
 
-        waveKlikegro.start(waveAuthor);
+        titleWave.start(waveAuthor);
     }
 }
