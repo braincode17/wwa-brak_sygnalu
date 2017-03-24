@@ -1,4 +1,4 @@
-package com.example;
+package pl.allegro.braincode;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
