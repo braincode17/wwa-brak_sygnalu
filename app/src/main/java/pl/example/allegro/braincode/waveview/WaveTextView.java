@@ -1,4 +1,4 @@
-package com.example.mlody.myapplication.waveview;
+package pl.example.allegro.braincode.waveview;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -11,7 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.example.mlody.myapplication.R;
+import pl.example.allegro.braincode.R;
 
 
 public class WaveTextView extends TextView {

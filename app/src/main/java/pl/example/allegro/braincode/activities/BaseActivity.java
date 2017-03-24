@@ -1,4 +1,4 @@
-package com.example.mlody.myapplication.activities;
+package pl.example.allegro.braincode.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.example.mlody.myapplication.waveview;
+package pl.example.allegro.braincode.waveview;
 
 import android.content.Context;
 import android.graphics.Typeface;

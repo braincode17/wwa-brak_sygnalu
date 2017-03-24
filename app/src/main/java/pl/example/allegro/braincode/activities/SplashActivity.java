@@ -1,13 +1,13 @@
-package com.example.mlody.myapplication.activities;
+package pl.example.allegro.braincode.activities;
 
 import android.os.Bundle;
 
 import butterknife.BindView;
 
-import com.example.mlody.myapplication.R;
-import com.example.mlody.myapplication.waveview.Typefaces;
-import com.example.mlody.myapplication.waveview.Wave;
-import com.example.mlody.myapplication.waveview.WaveTextView;
+import pl.example.allegro.braincode.R;
+import pl.example.allegro.braincode.waveview.Typefaces;
+import pl.example.allegro.braincode.waveview.Wave;
+import pl.example.allegro.braincode.waveview.WaveTextView;
 
 
 public class SplashActivity extends BaseActivity {

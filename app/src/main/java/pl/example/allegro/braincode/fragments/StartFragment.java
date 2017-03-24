@@ -1,11 +1,11 @@
-package com.example.mlody.myapplication.fragments;
+package pl.example.allegro.braincode.fragments;
 
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mlody.myapplication.R;
+import pl.example.allegro.braincode.R;
 
 
 public class StartFragment extends BaseFragment {

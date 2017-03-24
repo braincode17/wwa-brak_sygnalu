@@ -1,4 +1,4 @@
-package com.example.mlody.myapplication.fragments;
+package pl.example.allegro.braincode.fragments;
 
 
 import android.os.Bundle;

@@ -1,9 +1,9 @@
-package com.example.mlody.myapplication.activities;
+package pl.example.allegro.braincode.activities;
 
 import android.os.Bundle;
 
-import com.example.mlody.myapplication.R;
-import com.example.mlody.myapplication.fragments.StartFragment;
+import pl.example.allegro.braincode.R;
+import pl.example.allegro.braincode.fragments.StartFragment;
 
 public class MainActivity extends BaseActivity {
 
