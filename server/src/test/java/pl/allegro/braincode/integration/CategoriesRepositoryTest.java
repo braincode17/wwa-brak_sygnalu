@@ -20,7 +20,7 @@ public class CategoriesRepositoryTest {
     @Test
     public void shouldGetSubCategoriesList() throws Exception {
         CategoriesRepository categoriesRepository = new CategoriesRepository(new AuthService());
-        List<Category> categories = categoriesRepository.getCategories(26013);
+        List<Category> categories = categoriesRepository.getCategories(26013L);
         System.out.println(categories.size());
 
     }
