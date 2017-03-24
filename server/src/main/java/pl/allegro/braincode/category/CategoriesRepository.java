@@ -7,7 +7,6 @@ import pl.allegro.braincode.integration.allegro.auth.ServiceGenerator;
 import pl.allegro.braincode.integration.allegro.category.CategoriesService;
 import pl.allegro.braincode.integration.allegro.category.Category;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.List;
 
