@@ -9,9 +9,8 @@ public class AuthServiceTest {
     @Test
     public void auth() throws Exception {
         AuthService authService = new AuthService();
-        Call<AccessToken> auth = authService.auth();
-        AccessToken body = auth.execute().body();
-        System.out.println(body);
+        AccessToken auth = authService.auth();
+        assertNotNull(auth);
     }
 
 }

@@ -1,13 +1,11 @@
 package pl.allegro.braincode.integration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.allegro.braincode.integration.allegro.auth.AccessToken;
 import pl.allegro.braincode.integration.allegro.auth.AuthService;
+import pl.allegro.braincode.integration.allegro.auth.ServiceGenerator;
 import pl.allegro.braincode.integration.allegro.category.CategoriesService;
 import pl.allegro.braincode.integration.allegro.category.Category;
-import pl.allegro.braincode.integration.allegro.category.CategoryList;
-import pl.allegro.braincode.integration.allegro.category.ServiceGenerator;
-import retrofit2.Call;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,17 +13,24 @@ import java.util.List;
 @Service
 public class CategoriesRepository {
 
-    public Call<CategoryList> getCategories(String text) {
-        AuthService authService = new AuthService();
-        Call<AccessToken> auth = authService.auth();
+    private final AuthService authService;
+
+    @Autowired
+    public CategoriesRepository(AuthService authService) {
+        this.authService = authService;
+    }
+
+    public List<Category> getCategories(String text) {
+        CategoriesService service = ServiceGenerator.createService(CategoriesService.class);
         try {
-            String accessToken = auth.execute().body().getAccessToken();
-            CategoriesService service = ServiceGenerator.createService(CategoriesService.class);
-            return service.getCategories(accessToken, text);
+            return service
+                    .getCategories(authService.auth().getAccessToken(), text)
+                    .execute()
+                    .body()
+                    .getCategories();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error during getting categories", e);
         }
-        return null;
     }
 
 }
