@@ -2,4 +2,33 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="details_top_margin">30dp</dimen>
+    <dimen name="common_spacing">7dp</dimen>
+    <dimen name="details_checkbox_margin_right">14dp</dimen>
+    <dimen name="details_button_top_margin">40dp</dimen>
+    <dimen name="start_button_padding_top_bottom">5dp</dimen>
+    <dimen name="list_button_padding_top_bottom">5dp</dimen>
+    <dimen name="text_size_small">13sp</dimen>
+    <dimen name="text_size_big">17sp</dimen>
+
+    <dimen name="splash_author_size">14sp</dimen>
+    <dimen name="splash_app_name">30sp</dimen>
+
+    <dimen name="dense_button_corner_radius">2dp</dimen>
+    <dimen name="dense_button_height">32dp</dimen>
+    <dimen name="dense_button_l_r_padding">16dp</dimen>
+    <dimen name="dense_button_text_size">13sp</dimen>
+    <dimen name="dense_button_min_width">88dp</dimen>
+    <dimen name="dense_button_margin">8dp</dimen>
+
+    <dimen name="dialog_content_padding">24dp</dimen>
+    <dimen name="dialog_button_height">36dp</dimen>
+    <dimen name="dialog_min_width">64dp</dimen>
+    <dimen name="dialog_button_area_height">52dp</dimen>
+    <dimen name="dialog_button_padding">8dp</dimen>
+
+    <dimen name="design_list_height">48dp</dimen>
+    <dimen name="design_list_top_padding">8dp</dimen>
+    <dimen name="design_list_l_r_padding">16dp</dimen>
+    <dimen name="design_list_text_size">16sp</dimen>
 </resources>
