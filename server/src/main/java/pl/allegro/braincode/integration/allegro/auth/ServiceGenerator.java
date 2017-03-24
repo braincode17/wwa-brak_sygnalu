@@ -1,4 +1,4 @@
-package pl.allegro.braincode.integration.allegro.category;
+package pl.allegro.braincode.integration.allegro.auth;
 
 import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
