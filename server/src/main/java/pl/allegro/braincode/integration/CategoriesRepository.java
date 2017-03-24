@@ -20,11 +20,19 @@ public class CategoriesRepository {
         this.authService = authService;
     }
 
-    public List<Category> getCategories(String text) {
+    public List<Category> getCategories() {
+        return getCategories(null);
+    }
+
+    public List<Category> getCategories(long parentCategoryId) {
+        return getCategories(String.valueOf(parentCategoryId));
+    }
+
+    public List<Category> getCategories(String parentCategoryId) {
         CategoriesService service = ServiceGenerator.createService(CategoriesService.class);
         try {
             return service
-                    .getCategories(authService.auth().getAccessToken(), text)
+                    .getCategories(authService.auth().getAccessToken(), parentCategoryId)
                     .execute()
                     .body()
                     .getCategories();
