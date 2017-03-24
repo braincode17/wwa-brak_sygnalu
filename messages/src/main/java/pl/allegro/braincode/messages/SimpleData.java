@@ -1,4 +1,4 @@
-package com.example.messages;
+package pl.allegro.braincode.messages;
 
 public class SimpleData {
     private String name;
