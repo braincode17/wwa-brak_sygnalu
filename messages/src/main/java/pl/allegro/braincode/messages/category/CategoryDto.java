@@ -8,7 +8,6 @@ public enum CategoryDto {
         @Override
         public Map<String, String> getProperties() {
             Map<String,String> props = new HashMap<>();
-            props.put(CATEGORY,"Samochody osobowe");
             props.put("używane","tak");
             props.put("rok produkcji","od 1990");
             props.put("rodzaj paliwa","benzyna");
@@ -18,34 +17,52 @@ public enum CategoryDto {
             props.put("wyposażenie - pozostałe","alufelgi");
             return props;
         }
+
+        @Override
+        public String getName() {
+            return "Samochody osobowe";
+        }
     },
     PHONES {
         @Override
         public Map<String, String> getProperties() {
             Map<String,String> props = new HashMap<>();
-            props.put(CATEGORY,"Telefony");
             return props;
+        }
+
+        @Override
+        public String getName() {
+            return "Telefony";
         }
     },
     BICYCLES {
         @Override
         public Map<String, String> getProperties() {
             Map<String,String> props = new HashMap<>();
-            props.put(CATEGORY,"Rowery");
             return props;
+        }
+
+        @Override
+        public String getName() {
+            return "Rowery";
         }
     },
     FURNITURE {
         @Override
         public Map<String, String> getProperties() {
             Map<String,String> props = new HashMap<>();
-            props.put(CATEGORY,"Meble");
             return props;
+        }
+
+        @Override
+        public String getName() {
+            return "Meble";
         }
     };
 
     public static final String CATEGORY = "Kategoria";
 
     public abstract Map<String,String> getProperties();
+    public abstract String getName();
 
 }
