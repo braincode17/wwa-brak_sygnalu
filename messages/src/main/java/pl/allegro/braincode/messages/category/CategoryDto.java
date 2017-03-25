@@ -9,6 +9,13 @@ public enum CategoryDto {
         public Map<String, String> getProperties() {
             Map<String,String> props = new HashMap<>();
             props.put(CATEGORY,"Samochody osobowe");
+            props.put("używane","tak");
+            props.put("rok produkcji","od 1990");
+            props.put("rodzaj paliwa","benzyna");
+            props.put("nadwozie","Sedan/Limuzyna");
+            props.put("nadwozie","Sedan/Limuzyna");
+            props.put("uszkodzony","nie");
+            props.put("wyposażenie - pozostałe","alufelgi");
             return props;
         }
     },
