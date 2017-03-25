@@ -133,7 +133,7 @@ public class StrategyFragment extends BaseFragment {
                     Toast.makeText(getContext(), "Wybierz minimalny czas.", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                if (timeMoneyEditText.getText() != null) {
+                if (timeMoneyEditText.getText() != null && !timeMoneyEditText.getText().toString().isEmpty()) {
                     String text = timeMoneyEditText.getText().toString();
                     BaseFragment fragment = GetSuggestionsFragment.newInstance(
                             getArguments().getString(CATEGORY_KEY), userStrategy,
@@ -147,5 +147,11 @@ public class StrategyFragment extends BaseFragment {
         } else {
             Toast.makeText(getContext(), "Wybierz strategię.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        userStrategy = null;
+        super.onDestroyView();
     }
 }
