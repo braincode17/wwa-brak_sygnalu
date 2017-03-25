@@ -20,8 +20,6 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

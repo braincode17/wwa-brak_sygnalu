@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/orange_icon" />
 
         <pl.allegro.braincode.waveview.WaveTextView
             android:id="@+id/wave_ale_tv"
