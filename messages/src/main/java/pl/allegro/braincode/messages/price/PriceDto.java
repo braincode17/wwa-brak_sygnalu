@@ -6,6 +6,14 @@ public class PriceDto {
     private int daysToSell;
     private BigDecimal price;
 
+    public PriceDto() {
+    }
+
+    public PriceDto(int daysToSell, BigDecimal price) {
+        this.daysToSell = daysToSell;
+        this.price = price;
+    }
+
     public int getDaysToSell() {
         return daysToSell;
     }
