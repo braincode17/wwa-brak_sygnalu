@@ -74,6 +74,7 @@ public class StrategyFragment extends BaseFragment {
 
             }
         });
+        seekBar.setProgress(31);
     }
 
     @Override

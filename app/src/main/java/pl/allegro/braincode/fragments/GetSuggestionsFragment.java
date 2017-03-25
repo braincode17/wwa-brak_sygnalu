@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -85,6 +86,14 @@ public class GetSuggestionsFragment extends BaseFragment {
         setHasOptionsMenu(true);
     }
 
+    public void loadImage(String strategy){
+        if(strategy.equals("money")){
+            selectedStrategy.setImageDrawable(getResources()
+                    .getDrawable(R.drawable.ic_attach_money_black_48dp, null));
+        } else if(strategy.equals("time")){
+            selectedStrategy.setImageDrawable(getResources()
+                    .getDrawable(R.drawable.ic_timer_black_48dp, null));        }
+    }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
@@ -114,7 +123,9 @@ public class GetSuggestionsFragment extends BaseFragment {
         Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
+        selectedPeriod.setText(TextUtils.prettyPrintDuration(getArguments()
+                .getInt(TIME_PERIOD_KEY)));
+        loadImage(getArguments().getString(USERS_DECISION_KEY));
         ChartSetup.initSettings(chart);
         SuggestionQueryHelper.query(this, null);
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
