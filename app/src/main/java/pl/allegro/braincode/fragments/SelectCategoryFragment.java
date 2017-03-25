@@ -25,9 +25,8 @@ public class SelectCategoryFragment extends BaseFragment implements OnChooseList
 
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
-    List<String> categories = new ArrayList<>();
+    private List<String> categories = new ArrayList<>();
 
-    private boolean done = false;
     public static SelectCategoryFragment newInstance() {
         return new SelectCategoryFragment();
     }
@@ -61,8 +60,6 @@ public class SelectCategoryFragment extends BaseFragment implements OnChooseList
                         categories.addAll(response.body());
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                         recyclerView.setLayoutManager(linearLayoutManager);
-                        recyclerView.addItemDecoration(new DividerItemDecor(ContextCompat.getDrawable(getActivity(),
-                                R.drawable.divider)));
                         recyclerView.setAdapter(new RecyclerViewAdapter(categories, SelectCategoryFragment.this));
                     }
                     @Override

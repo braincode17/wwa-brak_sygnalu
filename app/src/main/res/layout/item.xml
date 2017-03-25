@@ -12,8 +12,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginStart="@dimen/design_list_l_r_padding"
+        android:layout_marginTop="5dp"
         android:maxLines="1"
         android:gravity="center"
         android:textColor="@color/white"
+        android:background="@drawable/round_button"
         android:textSize="@dimen/design_list_text_size" />
 </LinearLayout>
