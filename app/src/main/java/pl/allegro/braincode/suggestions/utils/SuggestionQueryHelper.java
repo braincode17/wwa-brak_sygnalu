@@ -12,8 +12,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SuggestionQueryHelper {
-    public static void query(final GetSuggestionsFragment fragment, String query) {
-        ServiceProvider.INSTANCE.getServerService().getPrices(fragment.getCategory(), query).enqueue(new Callback<Suggestion>() {
+    public static void query(final GetSuggestionsFragment fragment, String query, Integer days) {
+        ServiceProvider.INSTANCE.getServerService().getPrices(fragment.getCategory(), query, days).enqueue(new Callback<Suggestion>() {
             @Override
             public void onResponse(Call<Suggestion> call, Response<Suggestion> response) {
                 if(response.body() != null) {
@@ -22,7 +22,11 @@ public class SuggestionQueryHelper {
                     ChartSetup.setupChart(fragment.getChart(), ChartSetup.prepareDataForChart(entries));
                     fragment.setBestPrice(DtoConverter.convert(response.body().getBestPrice()));
                     fragment.setFastest(DtoConverter.convert(response.body().getFastest()));
-                    fragment.getChart().highlightValue(0, -1, true);
+                    if(fragment.getStrategy().equals("money")) {
+                        fragment.getChart().highlightValue(fragment.getBestPrice().getX(), 0, true);
+                    } else {
+                        fragment.getChart().highlightValue(fragment.getFastest().getX(), 0, true);
+                    }
                 }
             }
 

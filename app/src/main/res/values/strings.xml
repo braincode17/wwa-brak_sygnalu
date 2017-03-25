@@ -9,4 +9,32 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="car_query_suggestions">
+        <item>Nissan</item>
+        <item>Corsa</item>
+        <item>Primera</item>
+        <item>GTR</item>
+        <item>Passat</item>
+    </string-array>
+
+    <string-array name="iphones_query_suggestions">
+        <item>4s</item>
+        <item>5s</item>
+        <item>6s</item>
+        <item>7</item>
+    </string-array>
+
+    <string-array name="bicycles_query_suggestions">
+        <item>Cinelli</item>
+        <item>Campagnolo</item>
+        <item>Primera</item>
+        <item>Shimano</item>
+    </string-array>
+
+    <string-array name="furniture_query_suggestions">
+        <item>Ikea</item>
+        <item>black red white</item>
+        <item>Abra</item>
+    </string-array>
 </resources>
