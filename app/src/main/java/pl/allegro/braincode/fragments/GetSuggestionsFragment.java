@@ -126,7 +126,7 @@ public class GetSuggestionsFragment extends BaseFragment {
     @Override
     protected void onCreateFragmentView(View v, ViewGroup container, Bundle savedInstanceState) {
         Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
-
+        toolbar.setTitle(CategoryDto.valueOf(category).getName());
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         selectedPeriod.setText(TextUtils.prettyPrintDuration(getArguments()
                 .getInt(TIME_PERIOD_KEY)));
@@ -137,7 +137,7 @@ public class GetSuggestionsFragment extends BaseFragment {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 daysView.setText(TextUtils.prettyPrintDuration((int) e.getX()));
-                priceView.setText(String.valueOf(e.getY()) + " zł");
+                priceView.setText(String.format("%.2f zł", e.getY()));
             }
 
             @Override

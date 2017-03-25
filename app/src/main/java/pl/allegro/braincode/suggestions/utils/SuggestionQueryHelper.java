@@ -1,7 +1,9 @@
 package pl.allegro.braincode.suggestions.utils;
 
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
 
+import java.util.Collections;
 import java.util.List;
 
 import pl.allegro.braincode.communication.ServiceProvider;
@@ -16,7 +18,7 @@ public class SuggestionQueryHelper {
         ServiceProvider.INSTANCE.getServerService().getPrices(fragment.getCategory(), query, days).enqueue(new Callback<Suggestion>() {
             @Override
             public void onResponse(Call<Suggestion> call, Response<Suggestion> response) {
-                if(response.body() != null) {
+                if(response.body() != null && response.body().isValid()) {
                     List<Entry> entries = DtoConverter.convert(response.body());
                     fragment.setChartValues(entries);
                     ChartSetup.setupChart(fragment.getChart(), ChartSetup.prepareDataForChart(entries));
@@ -27,6 +29,15 @@ public class SuggestionQueryHelper {
                     } else {
                         fragment.getChart().highlightValue(fragment.getFastest().getX(), 0, true);
                     }
+                } else {
+                    fragment.setFastest(null);
+                    fragment.setBestPrice(null);
+                    fragment.getPriceView().setText("-");
+                    fragment.getDaysView().setText("-");
+                    fragment.getChart().setData(new LineData());
+                    fragment.getChart().highlightValue(0, -1, 0, true);
+                    fragment.setChartValues(Collections.<Entry>emptyList());
+                    fragment.showError("No data for given query.");
                 }
             }
 

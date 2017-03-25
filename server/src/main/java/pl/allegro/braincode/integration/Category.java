@@ -7,7 +7,6 @@ public enum Category {
     FURNITURE("buyNew=1&offerTypeBuyNow=1&a_enum[18167][2]=2&category.id=54089");
     private final String baseQuery;
 
-
     Category(String query) {
         this.baseQuery=query;
     }
