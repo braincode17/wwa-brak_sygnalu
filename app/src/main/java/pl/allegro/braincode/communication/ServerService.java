@@ -12,6 +12,7 @@ public interface ServerService {
     Call<List<String>> getCategories();
 
     @GET("prices")
-    Call<Suggestion> getPrices(@Query("category") String category, @Query("phrase") String phrase);
+    Call<Suggestion> getPrices(@Query("category") String category, @Query("phrase") String phrase,
+                               @Query("days") Integer days);
 
 }

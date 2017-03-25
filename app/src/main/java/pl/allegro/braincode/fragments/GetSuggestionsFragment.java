@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,6 +33,7 @@ import butterknife.OnClick;
 import lombok.Getter;
 import lombok.Setter;
 import pl.allegro.braincode.R;
+import pl.allegro.braincode.messages.category.Category;
 import pl.allegro.braincode.suggestions.utils.ChartSetup;
 import pl.allegro.braincode.suggestions.utils.SuggestionOnQueryTextListener;
 import pl.allegro.braincode.suggestions.utils.SuggestionQueryHelper;
@@ -67,6 +69,8 @@ public class GetSuggestionsFragment extends BaseFragment {
     private Entry bestPrice;
     private Entry fastest;
     private String category;
+    private Integer days;
+    private String strategy;
 
     public static GetSuggestionsFragment newInstance(String category, String usersDecision,
                                                      Integer time) {
@@ -83,17 +87,21 @@ public class GetSuggestionsFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         category = getArguments().getString(CATEGORY_KEY);
+        days = getArguments().getInt(TIME_PERIOD_KEY);
+        strategy = getArguments().getString(USERS_DECISION_KEY);
         setHasOptionsMenu(true);
     }
 
-    public void loadImage(String strategy){
-        if(strategy.equals("money")){
+    public void loadImage(String strategy) {
+        if (strategy.equals("money")) {
             selectedStrategy.setImageDrawable(getResources()
                     .getDrawable(R.drawable.ic_attach_money_black_48dp, null));
-        } else if(strategy.equals("time")){
+        } else if (strategy.equals("time")) {
             selectedStrategy.setImageDrawable(getResources()
-                    .getDrawable(R.drawable.ic_timer_black_48dp, null));        }
+                    .getDrawable(R.drawable.ic_timer_black_48dp, null));
+        }
     }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
@@ -127,7 +135,7 @@ public class GetSuggestionsFragment extends BaseFragment {
                 .getInt(TIME_PERIOD_KEY)));
         loadImage(getArguments().getString(USERS_DECISION_KEY));
         ChartSetup.initSettings(chart);
-        SuggestionQueryHelper.query(this, null);
+        SuggestionQueryHelper.query(this, null, days);
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -141,7 +149,9 @@ public class GetSuggestionsFragment extends BaseFragment {
                 priceView.setText("-");
             }
         });
+        setSuggestions();
         searchView.setOnQueryTextListener(new SuggestionOnQueryTextListener(this));
+        searchView.setVoiceSearch(true);
     }
 
     @Override
@@ -153,9 +163,30 @@ public class GetSuggestionsFragment extends BaseFragment {
     }
 
     @OnClick(R.id.sell_button)
-    public void sell(){
+    public void sell() {
         Uri uriUrl = Uri.parse("https://allegro.pl/");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
+    }
+
+    private void setSuggestions() {
+        Integer suggestions = null;
+        switch (Category.valueOf(category)) {
+            case CARS:
+                suggestions = R.array.car_query_suggestions;
+                break;
+            case BICYCLES:
+                suggestions = R.array.bicycles_query_suggestions;
+                break;
+            case FURNITURE:
+                suggestions = R.array.furniture_query_suggestions;
+                break;
+            case PHONES:
+                suggestions = R.array.iphones_query_suggestions;
+                break;
+            default:
+                Log.e(GetSuggestionsFragment.class.getSimpleName(), "Unknown category type.");
+        }
+        searchView.setSuggestions(getResources().getStringArray(suggestions));
     }
 }
