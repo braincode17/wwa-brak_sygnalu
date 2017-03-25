@@ -2,9 +2,6 @@ package pl.allegro.braincode.messages.price;
 
 import java.util.List;
 
-/**
- * Created by Karol on 2017-03-25.
- */
 public class Suggestion {
     List<PriceDto> data;
     PriceDto fastest;
