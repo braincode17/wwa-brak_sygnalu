@@ -6,8 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -15,19 +16,19 @@ import pl.allegro.braincode.R;
 import pl.allegro.braincode.activities.MainActivity;
 import pl.allegro.braincode.adapters.DividerItemDecor;
 import pl.allegro.braincode.adapters.RecyclerViewAdapter;
+import pl.allegro.braincode.communication.ServiceProvider;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SelectCategoryFragment extends BaseFragment implements OnChooseListener {
 
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
-    List<String> kek = Arrays.asList("lel","wooo","hoho","haha",
-                "lel","wooo","hoho","haha","kek2", "kekr3");
-
-    private LinearLayoutManager  linearLayoutManager;
+    private List<String> categories = new ArrayList<>();
 
     public static SelectCategoryFragment newInstance() {
-        SelectCategoryFragment fragment = new SelectCategoryFragment();
-        return fragment;
+        return new SelectCategoryFragment();
     }
 
     @Override
@@ -42,11 +43,30 @@ public class SelectCategoryFragment extends BaseFragment implements OnChooseList
 
     @Override
     protected void onCreateFragmentView(View v, ViewGroup container, Bundle savedInstanceState) {
-        linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecor(ContextCompat.getDrawable(getActivity(),
-                R.drawable.divider)));
-        recyclerView.setAdapter(new RecyclerViewAdapter(kek, this));
+        downloadAndDisplay();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        categories.clear();
+    }
+
+    public void downloadAndDisplay(){
+        ServiceProvider.INSTANCE.getServerService().getCategories().enqueue(
+                new Callback<List<String>>() {
+                    @Override
+                    public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                        categories.addAll(response.body());
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                        recyclerView.setLayoutManager(linearLayoutManager);
+                        recyclerView.setAdapter(new RecyclerViewAdapter(categories, SelectCategoryFragment.this));
+                    }
+                    @Override
+                    public void onFailure(Call<List<String>> call, Throwable t) {
+                        Toast.makeText(getContext(),":(", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @Override
@@ -56,7 +76,7 @@ public class SelectCategoryFragment extends BaseFragment implements OnChooseList
     @Override
     public void choose(int id) {
         //Transaction
-        BaseFragment fragment = GetSuggestionsFragment.newInstance();
+        BaseFragment fragment = GetSuggestionsFragment.newInstance(categories.get(id));
         ((MainActivity) getActivity()).showFragment(fragment, fragment.getFragmentTag(), true);
     }
 }

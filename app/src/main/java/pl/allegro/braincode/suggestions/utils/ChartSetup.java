@@ -9,6 +9,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChartSetup {
 
@@ -59,7 +60,7 @@ public class ChartSetup {
         chart.animateXY(500,300);//animateX(500);
     }
 
-    public static LineData prepareDataForChart(ArrayList<Entry> entries) {
+    public static LineData prepareDataForChart(List<Entry> entries) {
         // create a dataset and give it a type
         LineDataSet set1 = new LineDataSet(entries, "DataSet 1");
         // set1.setFillAlpha(110);

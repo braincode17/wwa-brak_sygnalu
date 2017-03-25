@@ -7,14 +7,15 @@
     android:paddingStart="@dimen/design_list_l_r_padding">
 
     <TextView
-        android:id="@+id/todo_title"
+        android:id="@+id/category_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginStart="@dimen/design_list_l_r_padding"
+        android:layout_marginTop="5dp"
         android:maxLines="1"
         android:gravity="center"
-        android:text="Category"
         android:textColor="@color/white"
+        android:background="@drawable/round_button"
         android:textSize="@dimen/design_list_text_size" />
 </LinearLayout>

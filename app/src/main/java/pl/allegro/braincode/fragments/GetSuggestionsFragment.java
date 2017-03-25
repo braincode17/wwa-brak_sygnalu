@@ -2,6 +2,7 @@ package pl.allegro.braincode.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,7 +16,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 
-import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -28,18 +29,27 @@ import pl.allegro.braincode.suggestions.utils.SuggestionOnQueryTextListener;
 @Setter
 public class GetSuggestionsFragment extends BaseFragment {
 
+    private static final String CATEGORY_KEY = "category";
+
     private LineChart chart;
     private MaterialSearchView searchView;
-    private ArrayList<Entry> chartValues;
+    private List<Entry> chartValues;
+    private Entry bestPrice;
+    private Entry fastest;
+    private String category;
 
-    public static GetSuggestionsFragment newInstance() {
+    public static GetSuggestionsFragment newInstance(String category) {
         GetSuggestionsFragment fragment = new GetSuggestionsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(CATEGORY_KEY, category);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        category = getArguments().getString(CATEGORY_KEY);
         setHasOptionsMenu(true);
     }
 
@@ -54,6 +64,7 @@ public class GetSuggestionsFragment extends BaseFragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putString(CATEGORY_KEY, category);
     }
 
     @Override
@@ -82,5 +93,9 @@ public class GetSuggestionsFragment extends BaseFragment {
 
     @Override
     protected void onViewsFragment(View view, Bundle savedInstanceState) {
+    }
+
+    public void showError(String error) {
+        Snackbar.make(getView(), error, Snackbar.LENGTH_SHORT);
     }
 }
