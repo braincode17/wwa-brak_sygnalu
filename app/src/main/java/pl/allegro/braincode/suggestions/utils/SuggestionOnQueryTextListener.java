@@ -25,27 +25,7 @@ public class SuggestionOnQueryTextListener implements MaterialSearchView.OnQuery
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-       /* ArrayList<Entry> data = MockDataProvider.getData();
-        fragment.setChartValues(data);
-        ChartSetup.setupChart(fragment.getChart(), ChartSetup.prepareDataForChart(data));*/
-        //rest query saving data to chartValues an updating
-        ServiceProvider.INSTANCE.getServerService().getPrices(fragment.getCategory(), query).enqueue(new Callback<Suggestion>() {
-            @Override
-            public void onResponse(Call<Suggestion> call, Response<Suggestion> response) {
-                if(response.body() != null) {
-                    List<Entry> entries = DtoConverter.convert(response.body());
-                    fragment.setChartValues(entries);
-                    ChartSetup.setupChart(fragment.getChart(), ChartSetup.prepareDataForChart(entries));
-                    fragment.setBestPrice(DtoConverter.convert(response.body().getBestPrice()));
-                    fragment.setFastest(DtoConverter.convert(response.body().getFastest()));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Suggestion> call, Throwable t) {
-                fragment.showError("Rest call failed.");
-            }
-        });
+        SuggestionQueryHelper.query(fragment, query);
         return false;
     }
 
