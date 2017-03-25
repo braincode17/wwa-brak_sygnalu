@@ -63,17 +63,23 @@ public class SuggestionsService {
                 .max(Comparator.comparing(PriceDto::getPrice))
                 .orElseGet(null);
 
-        BigDecimal minPriceBigDec = new BigDecimal(minPrice);
-        PriceDto fastest = data.stream()
-                .filter(x -> {
-                    int i = x.getPrice().compareTo(minPriceBigDec);
-                    return i == 1 || i == 0;
-                })
-                .min(Comparator.comparing(PriceDto::getDaysToSell))
-                .orElseGet(null);
-
+        if (minPrice != null) {
+            BigDecimal minPriceBigDec = new BigDecimal(minPrice);
+            PriceDto fastest = data.stream()
+                    .filter(x -> {
+                        int i = x.getPrice().compareTo(minPriceBigDec);
+                        return i == 1 || i == 0;
+                    })
+                    .min(Comparator.comparing(PriceDto::getDaysToSell))
+                    .orElseGet(null);
+            suggestion.setFastest(fastest);
+        } else {
+            PriceDto fastest = data.stream()
+                    .min(Comparator.comparing(PriceDto::getDaysToSell))
+                    .orElseGet(null);
+            suggestion.setFastest(fastest);
+        }
         suggestion.setBestPrice(bestPrice);
-        suggestion.setFastest(fastest);
         return suggestion;
     }
 }
