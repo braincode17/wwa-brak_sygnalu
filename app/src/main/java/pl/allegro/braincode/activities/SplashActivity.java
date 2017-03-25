@@ -27,7 +27,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected int getFragmentContainer() {
-        return R.id.fragment_container;
+        throw new RuntimeException("Not implemented fragment container on splash screen.");
     }
 
     @Override
@@ -53,6 +53,7 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
                 runActivity(MainActivity.class);
+                finish();
             }
         }, Wave.TIME_WAVE_ANIMATION + 400);
 
