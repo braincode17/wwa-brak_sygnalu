@@ -38,8 +38,6 @@ public class GetSuggestionsFragment extends BaseFragment {
 
     private static final String CATEGORY_KEY = "category";
 
-    private LineChart chart;
-    private MaterialSearchView searchView;
     @BindView(R.id.chart)
     LineChart chart;
     @BindView(R.id.search_view)
