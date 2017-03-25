@@ -22,6 +22,7 @@ public class SuggestionQueryHelper {
                     ChartSetup.setupChart(fragment.getChart(), ChartSetup.prepareDataForChart(entries));
                     fragment.setBestPrice(DtoConverter.convert(response.body().getBestPrice()));
                     fragment.setFastest(DtoConverter.convert(response.body().getFastest()));
+                    fragment.getChart().highlightValue(0, -1, true);
                 }
             }
 
