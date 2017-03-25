@@ -43,7 +43,7 @@ public class GetSuggestionsFragment extends BaseFragment {
 
     private static final String CATEGORY_KEY = "category";
     private static final String USERS_DECISION_KEY = "decision";
-    private static final String TIME_PERIOD_KEY = "time";
+    private static final String TIME_PERIOD_KEY = "timePeriod";
 
     @BindView(R.id.chart)
     LineChart chart;
