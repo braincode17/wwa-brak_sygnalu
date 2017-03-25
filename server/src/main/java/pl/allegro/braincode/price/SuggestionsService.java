@@ -10,6 +10,7 @@ import pl.allegro.braincode.messages.price.PriceDto;
 import pl.allegro.braincode.messages.price.Suggestion;
 import pl.allegro.braincode.utils.MockDataProvider;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -48,13 +49,7 @@ public class SuggestionsService {
         }
 
         OptionalDouble max = prices.stream().mapToDouble(Double::doubleValue).max();
-        OptionalDouble min;
-        if(minPrice != null) {
-            List<Double> pricesWithMin = prices.stream().filter(x -> x >= minPrice).collect(Collectors.toList());
-            min = pricesWithMin.stream().mapToDouble(Double::doubleValue).min();
-        } else {
-            min = prices.stream().mapToDouble(Double::doubleValue).min();
-        }
+        OptionalDouble min = prices.stream().mapToDouble(Double::doubleValue).min();
 
         long extendedDays = Math.round(finalDays * EXTENDED_DAYS_RATIO);
 
@@ -68,7 +63,12 @@ public class SuggestionsService {
                 .max(Comparator.comparing(PriceDto::getPrice))
                 .orElseGet(null);
 
+        BigDecimal minPriceBigDec = new BigDecimal(minPrice);
         PriceDto fastest = data.stream()
+                .filter(x -> {
+                    int i = x.getPrice().compareTo(minPriceBigDec);
+                    return i == 1 || i == 0;
+                })
                 .min(Comparator.comparing(PriceDto::getDaysToSell))
                 .orElseGet(null);
 
