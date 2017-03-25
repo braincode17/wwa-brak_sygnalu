@@ -1,7 +1,8 @@
 package pl.allegro.braincode.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,13 +14,16 @@ import java.util.List;
 
 import butterknife.BindView;
 import pl.allegro.braincode.R;
+import pl.allegro.braincode.activities.MainActivity;
 import pl.allegro.braincode.adapters.DividerItemDecor;
 import pl.allegro.braincode.adapters.RecyclerViewAdapter;
 
-public class SelectCategoryFragment extends BaseFragment {
+public class SelectCategoryFragment extends BaseFragment implements OnChooseList {
 
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
+        List<String> kek = Arrays.asList("lel","wooo","hoho","haha",
+                "lel","wooo","hoho","haha","kek2", "kekr3");
 
     private LinearLayoutManager  linearLayoutManager;
 
@@ -40,15 +44,21 @@ public class SelectCategoryFragment extends BaseFragment {
 
     @Override
     protected void onCreateFragmentView(View v, ViewGroup container, Bundle savedInstanceState) {
-        List<String> kek = Arrays.asList("lel","wooo","hoho","haha",
-                "lel","wooo","hoho","haha","kek2", "kekr3");
         linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecor(ContextCompat.getDrawable(getActivity(), R.drawable.divider)));
-        recyclerView.setAdapter(new RecyclerViewAdapter(kek));
+        recyclerView.addItemDecoration(new DividerItemDecor(ContextCompat.getDrawable(getActivity(),
+                R.drawable.divider)));
+        recyclerView.setAdapter(new RecyclerViewAdapter(kek, this));
     }
 
     @Override
     protected void onViewsFragment(View view, Bundle savedInstanceState) {
+    }
+
+    @Override
+    public void choose(int id) {
+        //Transaction
+        BaseFragment fragment = GetSuggestionsFragment.newInstance();
+        ((MainActivity) getActivity()).showFragment(fragment, fragment.getFragmentTag());
     }
 }

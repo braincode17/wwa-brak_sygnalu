@@ -6,31 +6,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.allegro.braincode.R;
+import pl.allegro.braincode.fragments.OnChooseList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> {
 
     private List<String> tasks;
+    private OnChooseList listener;
 
-    public RecyclerViewAdapter(List<String> tasks) {
+    public RecyclerViewAdapter(List<String> tasks, OnChooseList listener) {
         this.tasks = tasks;
+        this.listener = listener;
     }
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
-        return new CustomViewHolder(v);
+        return new CustomViewHolder(v, listener);
     }
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-        holder.title.setText("lel");
-        holder.taskId.setText("heh");
+        holder.title.setText("Category");
     }
 
     @Override
@@ -40,15 +42,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     static class CustomViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.todo_id)
-        TextView taskId;
         @BindView(R.id.todo_title)
         TextView title;
 
-        public CustomViewHolder(View itemView) {
+        OnChooseList list;
+
+        public CustomViewHolder(View itemView, OnChooseList listener) {
             super(itemView);
+            this.list = listener;
             ButterKnife.bind(this, itemView);
         }
 
+        @OnClick(R.id.todo_title)
+        public void click(){
+            list.choose(getAdapterPosition());
         }
+
+    }
 }
