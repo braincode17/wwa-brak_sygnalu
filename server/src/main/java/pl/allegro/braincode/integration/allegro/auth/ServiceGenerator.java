@@ -1,9 +1,6 @@
 package pl.allegro.braincode.integration.allegro.auth;
 
-import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
-import pl.allegro.braincode.integration.allegro.auth.AuthenticationInterceptor;
-import pl.allegro.braincode.utils.TextUtils;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 

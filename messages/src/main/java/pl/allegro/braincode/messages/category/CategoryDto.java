@@ -1,6 +1,6 @@
-package pl.allegro.braincode.integration.allegro.category;
+package pl.allegro.braincode.messages.category;
 
-public class Category {
+public class CategoryDto {
     private String id;
     private String name;
     private boolean hasChildren;
