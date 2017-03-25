@@ -23,10 +23,11 @@ public class OffersQuery {
                 });
         params.put("country.code", "PL");
 
+        //TODO hack ;p
         if (phrase != null) {
-            params.put("phrase", phrase);
+            phrase="a";
         }
-
+        params.put("phrase", phrase);
         return params;
     }
 }
