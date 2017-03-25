@@ -10,16 +10,15 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-
         <TextView
             android:id="@+id/days"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:gravity="center"
             android:layout_weight="1"
-            android:text="@string/days" />
+            android:gravity="center"
+            android:text="@string/days"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/price"
@@ -30,6 +29,7 @@
             android:gravity="center"
             android:text="@string/price"
             android:layout_height="0dp" />
+
     </LinearLayout>
 
     <com.github.mikephil.charting.charts.LineChart
