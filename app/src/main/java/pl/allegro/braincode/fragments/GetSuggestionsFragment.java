@@ -31,14 +31,16 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.allegro.braincode.R;
 import pl.allegro.braincode.suggestions.utils.ChartSetup;
-import pl.allegro.braincode.suggestions.utils.MockDataProvider;
 import pl.allegro.braincode.suggestions.utils.SuggestionOnQueryTextListener;
+import pl.allegro.braincode.suggestions.utils.SuggestionQueryHelper;
 
 @Getter
 @Setter
 public class GetSuggestionsFragment extends BaseFragment {
 
     private static final String CATEGORY_KEY = "category";
+    private static final String USERS_DECISION_KEY = "decision";
+    private static final String TIME_PERIOD_KEY = "time";
 
     @BindView(R.id.chart)
     LineChart chart;
@@ -68,10 +70,13 @@ public class GetSuggestionsFragment extends BaseFragment {
     private Entry fastest;
     private String category;
 
-    public static GetSuggestionsFragment newInstance(String category) {
+    public static GetSuggestionsFragment newInstance(String category, String usersDecision,
+                                                     Integer time) {
         GetSuggestionsFragment fragment = new GetSuggestionsFragment();
         Bundle bundle = new Bundle();
         bundle.putString(CATEGORY_KEY, category);
+        bundle.putString(USERS_DECISION_KEY, usersDecision);
+        bundle.putInt(TIME_PERIOD_KEY, time);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -114,8 +119,7 @@ public class GetSuggestionsFragment extends BaseFragment {
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
         ChartSetup.initSettings(chart);
-        chartValues = MockDataProvider.getData();
-        ChartSetup.setupChart(chart, ChartSetup.prepareDataForChart(chartValues));
+        SuggestionQueryHelper.query(this, null);
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {

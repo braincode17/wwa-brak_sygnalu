@@ -21,6 +21,8 @@ public class StrategyFragment extends BaseFragment {
     @BindView(R.id.period_text_view)
     TextView perdioTextView;
 
+    private String usersStrategy;
+
     public static StrategyFragment newInstance(String category) {
         StrategyFragment fragment = new StrategyFragment();
         Bundle bundle = new Bundle();
@@ -88,11 +90,20 @@ public class StrategyFragment extends BaseFragment {
         return stringBuffer.toString();
     }
 
+@OnClick(R.id.money_button)
+public void chooseMoney(){
+    usersStrategy = "money";
+}
 
+    @OnClick(R.id.time_button)
+    public void chooseTime(){
+        usersStrategy = "time";
+    }
     @OnClick(R.id.proceed_button)
     public void proceed(){
         BaseFragment fragment = GetSuggestionsFragment.newInstance(
-                getArguments().getString(CATEGORY_KEY));
+                getArguments().getString(CATEGORY_KEY),usersStrategy,
+                seekBar.getProgress());
         ((MainActivity) getActivity()).showFragentWithTransition(fragment,
                 fragment.getFragmentTag(), true);
     }
