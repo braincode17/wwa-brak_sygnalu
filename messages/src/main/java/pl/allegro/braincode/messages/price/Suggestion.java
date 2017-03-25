@@ -30,4 +30,8 @@ public class Suggestion {
     public void setBestPrice(PriceDto bestPrice) {
         this.bestPrice = bestPrice;
     }
+
+    public boolean isValid() {
+        return data != null && !data.isEmpty() && fastest != null && bestPrice != null;
+    }
 }

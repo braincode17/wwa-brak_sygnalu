@@ -33,7 +33,7 @@ import butterknife.OnClick;
 import lombok.Getter;
 import lombok.Setter;
 import pl.allegro.braincode.R;
-import pl.allegro.braincode.messages.category.Category;
+import pl.allegro.braincode.messages.category.CategoryDto;
 import pl.allegro.braincode.suggestions.utils.ChartSetup;
 import pl.allegro.braincode.suggestions.utils.SuggestionOnQueryTextListener;
 import pl.allegro.braincode.suggestions.utils.SuggestionQueryHelper;
@@ -171,7 +171,7 @@ public class GetSuggestionsFragment extends BaseFragment {
 
     private void setSuggestions() {
         Integer suggestions = null;
-        switch (Category.valueOf(category)) {
+        switch (CategoryDto.valueOf(category)) {
             case CARS:
                 suggestions = R.array.car_query_suggestions;
                 break;
