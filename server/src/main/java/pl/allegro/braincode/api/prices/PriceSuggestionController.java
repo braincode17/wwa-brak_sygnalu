@@ -18,8 +18,10 @@ public class PriceSuggestionController {
     private SuggestionsService pricesService;
 
     @GetMapping
-    public Suggestion getSuggestion(@RequestParam Category category, @RequestParam(required = false) String phrase) {
+    public Suggestion getSuggestion(@RequestParam Category category,
+                                    @RequestParam(required = false) String phrase,
+                                    @RequestParam Integer days) {
         OffersQuery offersQuery = new OffersQuery(category, phrase);
-        return pricesService.getSuggestion(offersQuery);
+        return pricesService.getSuggestion(offersQuery, days);
     }
 }

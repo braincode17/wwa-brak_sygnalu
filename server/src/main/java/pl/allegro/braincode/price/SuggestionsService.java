@@ -23,10 +23,12 @@ import java.util.stream.Collectors;
 @Service
 public class SuggestionsService {
 
+    private static final float EXTENDED_DAYS_RATIO = 1.2f;
+
     @Autowired
     private OffersRepository offersRepository;
 
-    public Suggestion getSuggestion(OffersQuery offersQuery) {
+    public Suggestion getSuggestion(OffersQuery offersQuery, Integer days) {
 
         OffersList offersList = offersRepository.getOffersList(offersQuery);
         List<Double> prices = offersList.getOffers().stream()
@@ -37,13 +39,17 @@ public class SuggestionsService {
 
         OptionalDouble max = prices.stream().mapToDouble(Double::doubleValue).max();
         OptionalDouble min = prices.stream().mapToDouble(Double::doubleValue).min();
-        ArrayList<PriceDto> data = MockDataProvider.getData1((int) min.getAsDouble(), (int) max.getAsDouble(), 45);
+
+        long extendedDays = Math.round(days * EXTENDED_DAYS_RATIO);
+
+        ArrayList<PriceDto> data = MockDataProvider.getData1((int) min.getAsDouble(), (int) max.getAsDouble(), (int) extendedDays);
         //TODO map from offers to PriceDtos
         //TODO fill gaps in data
 
         Suggestion suggestion = new Suggestion();
         suggestion.setData(data);
         PriceDto bestPrice = data.stream()
+                .filter(x -> x.getDaysToSell() <= days)
                 .max(Comparator.comparing(PriceDto::getPrice))
                 .orElseGet(null);
 

@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">Price suggestion</string>
-    <string name="choose_category">Choose category:</string>
-    <string name="search">Search</string>
+    <string name="choose_category">Wybierz kategorię:</string>
+    <string name="search">Szukaj</string>
     <string name="under_title">byBrakSygnału</string>
-    <string name="sell_for">Sell for</string>
     <string name="sell_in">Sell in</string>
     <string name="days">Dni</string>
     <string name="price">Cena</string>
