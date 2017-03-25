@@ -1,16 +1,12 @@
 package pl.allegro.braincode.fragments;
 
-import android.media.Image;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -43,7 +39,6 @@ public class StrategyFragment extends BaseFragment {
         fragment.setArguments(bundle);
         return fragment;
     }
-
 
 
     @Override
@@ -99,15 +94,15 @@ public class StrategyFragment extends BaseFragment {
 
     @OnClick(R.id.proceed_button)
     public void proceed() {
-        if (userStrategy!=null) {
+        if (userStrategy != null && !(seekBar.getProgress() == 0)) {
             BaseFragment fragment = GetSuggestionsFragment.newInstance(
                     getArguments().getString(CATEGORY_KEY), userStrategy,
                     seekBar.getProgress());
             ((MainActivity) getActivity()).showFragentWithTransition(fragment,
                     fragment.getFragmentTag(), true);
         } else {
-            Toast.makeText(getContext(),"You need to select one category.",Toast.LENGTH_SHORT)
-                    .show();
+            Toast.makeText(getContext(), "Wybierz strategię i czas oczekiwania.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 }
