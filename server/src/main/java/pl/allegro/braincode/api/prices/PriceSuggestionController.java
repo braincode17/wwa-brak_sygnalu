@@ -21,8 +21,8 @@ public class PriceSuggestionController {
     public Suggestion getSuggestion(@RequestParam Category category,
                                     @RequestParam(required = false) String phrase,
                                     @RequestParam(required = false) Integer days,
-                                    @RequestParam(required = false) Integer minPrince) {
+                                    @RequestParam(required = false) Integer minPrice) {
         OffersQuery offersQuery = new OffersQuery(category, phrase);
-        return pricesService.getSuggestion(offersQuery, days, minPrince);
+        return pricesService.getSuggestion(offersQuery, days, minPrice);
     }
 }

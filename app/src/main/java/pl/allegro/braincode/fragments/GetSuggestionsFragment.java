@@ -77,8 +77,12 @@ public class GetSuggestionsFragment extends BaseFragment {
         Bundle bundle = new Bundle();
         bundle.putString(CATEGORY_KEY, category);
         bundle.putString(USERS_DECISION_KEY, usersDecision);
-        bundle.putInt(TIME_PERIOD_KEY, time);
-        bundle.putInt(MIN_PRICE_KEY, minPrice);
+        if (time != null) {
+            bundle.putInt(TIME_PERIOD_KEY, time);
+        }
+        if (minPrice != null) {
+            bundle.putInt(MIN_PRICE_KEY, minPrice);
+        }
         fragment.setArguments(bundle);
         return fragment;
     }
