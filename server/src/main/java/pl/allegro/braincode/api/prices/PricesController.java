@@ -1,5 +1,6 @@
 package pl.allegro.braincode.api.prices;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +23,7 @@ public class PricesController {
     @GetMapping
     public List<PriceDto> getPrices(@RequestParam Category category, String phrase) {
 
-        OffersQuery offersQuery = OffersQueryFactory.from(category, phrase);
-
+        OffersQuery offersQuery = new OffersQuery(pl.allegro.braincode.integration.Category.valueOf(category.name()), phrase);
         pricesService.getPrices(offersQuery);
         return null;
     }

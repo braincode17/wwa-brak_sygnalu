@@ -17,9 +17,6 @@ public interface OffersService {
     })
     @GET("/offers")
     public Call<OffersList> offers(
-            @Query("country.code") String countryCode,
-            @Query("phrase") String phrase,
-            @Query("category.id") String categoryId,
             @QueryMap Map<String, String> map
     );
 }
