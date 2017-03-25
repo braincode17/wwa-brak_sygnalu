@@ -15,12 +15,16 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
+
         <TextView
+            android:id="@+id/days"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/days"
-            android:layout_height="match_parent" />
+            android:text="@string/days" />
+
         <TextView
+            android:id="@+id/price"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/price"
@@ -34,27 +38,69 @@
         android:orientation="horizontal"
         style="?android:attr/buttonBarStyle">
 
-        <Button
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/green" />
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:weightSum="100">
 
-        <Button
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/yellow"/>
+            <RadioButton
+                android:layout_weight="33"
+                style="?android:attr/radioButtonStyle"
+                android:textColor="@color/black"
+                android:id="@+id/radio_highest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drogo"
+                android:onClick="onRadioButtonClicked"
+                android:buttonTint="@color/green"/>
+            <RadioButton
+                android:layout_weight="34"
+                style="?android:attr/radioButtonStyle"
+                android:textColor="@color/black"
+                android:id="@+id/radio_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dowolnie"
+                android:onClick="onRadioButtonClicked"
+                android:buttonTint="@color/yellow"/>
 
-        <Button
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/red"
-            android:stateListAnimator="@null"/>
+            <RadioButton
+                android:layout_weight="33"
+                style="?android:attr/radioButtonStyle"
+                android:textColor="@color/black"
+                android:id="@+id/radio_fastest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Szybko"
+                android:onClick="onRadioButtonClicked"
+                android:buttonTint="@color/red"/>
+
+        </RadioGroup>
+
+        <!--<Button-->
+            <!--style="?android:attr/buttonBarButtonStyle"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@color/green" />-->
+
+        <!--<Button-->
+            <!--style="?android:attr/buttonBarButtonStyle"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@color/yellow"/>-->
+
+        <!--<Button-->
+            <!--style="?android:attr/buttonBarButtonStyle"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@color/red"-->
+            <!--android:stateListAnimator="@null"/>-->
     </LinearLayout>
 
     <Button

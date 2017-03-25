@@ -10,14 +10,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import lombok.Getter;
 import lombok.Setter;
 import pl.allegro.braincode.R;
@@ -33,6 +40,26 @@ public class GetSuggestionsFragment extends BaseFragment {
 
     private LineChart chart;
     private MaterialSearchView searchView;
+    @BindView(R.id.chart)
+    LineChart chart;
+    @BindView(R.id.search_view)
+    MaterialSearchView searchView;
+
+    @BindView(R.id.days)
+    TextView daysView;
+    @BindView(R.id.price)
+    TextView priceView;
+
+    @BindView(R.id.radio_group)
+    RadioGroup radioGroup;
+
+    @BindView(R.id.radio_fastest)
+    RadioButton radioFastest;
+    @BindView(R.id.radio_custom)
+    RadioButton radioCustom;
+    @BindView(R.id.radio_highest)
+    RadioButton radioHighest;
+
     private List<Entry> chartValues;
     private Entry bestPrice;
     private Entry fastest;
@@ -83,12 +110,41 @@ public class GetSuggestionsFragment extends BaseFragment {
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
-        chart = (LineChart) v.findViewById(R.id.chart);
         ChartSetup.initSettings(chart);
         chartValues = MockDataProvider.getData();
         ChartSetup.setupChart(chart, ChartSetup.prepareDataForChart(chartValues));
-        searchView = (MaterialSearchView) v.findViewById(R.id.search_view);
+        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                priceView.setText(String.valueOf(e.getX()));
+                priceView.setText(String.valueOf(e.getY()));
+            }
+
+            @Override
+            public void onNothingSelected() {
+                priceView.setText("-");
+                priceView.setText("-");
+            }
+        });
         searchView.setOnQueryTextListener(new SuggestionOnQueryTextListener(this));
+        radioHighest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chart.highlightValue(bestPrice.getX(), 0, true);
+            }
+        });
+        radioFastest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chart.highlightValue(6, 0, true);
+            }
+        });
+        radioCustom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chart.highlightValue(fastest.getX(), 0, true);
+            }
+        });
     }
 
     @Override
