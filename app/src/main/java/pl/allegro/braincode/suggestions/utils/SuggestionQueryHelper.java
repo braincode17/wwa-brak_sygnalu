@@ -14,8 +14,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SuggestionQueryHelper {
-    public static void query(final GetSuggestionsFragment fragment, String query, Integer days) {
-        ServiceProvider.INSTANCE.getServerService().getPrices(fragment.getCategory(), query, days).enqueue(new Callback<Suggestion>() {
+    public static void query(final GetSuggestionsFragment fragment, String query, Integer days, Integer minPrice) {
+        ServiceProvider.INSTANCE.getServerService().getPrices(fragment.getCategory(), query, days, minPrice).enqueue(new Callback<Suggestion>() {
             @Override
             public void onResponse(Call<Suggestion> call, Response<Suggestion> response) {
                 if(response.body() != null && response.body().isValid()) {

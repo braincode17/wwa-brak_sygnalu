@@ -13,6 +13,6 @@ public interface ServerService {
 
     @GET("prices")
     Call<Suggestion> getPrices(@Query("category") String category, @Query("phrase") String phrase,
-                               @Query("days") Integer days);
+                               @Query("days") Integer days, @Query("minPrice") Integer minPrice);
 
 }

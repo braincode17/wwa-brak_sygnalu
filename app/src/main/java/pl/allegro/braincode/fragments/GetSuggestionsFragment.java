@@ -43,6 +43,7 @@ public class GetSuggestionsFragment extends BaseFragment {
     private static final String CATEGORY_KEY = "category";
     private static final String USERS_DECISION_KEY = "decision";
     private static final String TIME_PERIOD_KEY = "timePeriod";
+    private static final String MIN_PRICE_KEY = "minPrice";
 
     @BindView(R.id.chart)
     LineChart chart;
@@ -67,15 +68,17 @@ public class GetSuggestionsFragment extends BaseFragment {
     private Entry fastest;
     private String category;
     private Integer days;
+    private Integer minPrice;
     private String strategy;
 
     public static GetSuggestionsFragment newInstance(String category, String usersDecision,
-                                                     Integer time) {
+                                                     Integer time, Integer minPrice) {
         GetSuggestionsFragment fragment = new GetSuggestionsFragment();
         Bundle bundle = new Bundle();
         bundle.putString(CATEGORY_KEY, category);
         bundle.putString(USERS_DECISION_KEY, usersDecision);
         bundle.putInt(TIME_PERIOD_KEY, time);
+        bundle.putInt(MIN_PRICE_KEY, minPrice);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -85,6 +88,7 @@ public class GetSuggestionsFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         category = getArguments().getString(CATEGORY_KEY);
         days = getArguments().getInt(TIME_PERIOD_KEY);
+        minPrice = getArguments().getInt(MIN_PRICE_KEY);
         strategy = getArguments().getString(USERS_DECISION_KEY);
         setHasOptionsMenu(true);
     }
@@ -111,6 +115,9 @@ public class GetSuggestionsFragment extends BaseFragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(CATEGORY_KEY, category);
+        outState.putInt(TIME_PERIOD_KEY, days);
+        outState.putInt(MIN_PRICE_KEY, minPrice);
+        outState.putString(USERS_DECISION_KEY, strategy);
     }
 
     @Override
@@ -132,7 +139,11 @@ public class GetSuggestionsFragment extends BaseFragment {
                 .getInt(TIME_PERIOD_KEY)));
         loadImage(getArguments().getString(USERS_DECISION_KEY));
         ChartSetup.initSettings(chart);
-        SuggestionQueryHelper.query(this, null, days);
+        if(strategy.equals("money")) {
+            SuggestionQueryHelper.query(this, null, days, null);
+        } else {
+            SuggestionQueryHelper.query(this, null, null, minPrice);
+        }
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {

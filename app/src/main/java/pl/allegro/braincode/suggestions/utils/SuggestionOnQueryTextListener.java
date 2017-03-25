@@ -13,7 +13,7 @@ public class SuggestionOnQueryTextListener implements MaterialSearchView.OnQuery
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        SuggestionQueryHelper.query(fragment, query, fragment.getDays());
+        SuggestionQueryHelper.query(fragment, query, fragment.getDays(), fragment.getMinPrice());
         return false;
     }
 
