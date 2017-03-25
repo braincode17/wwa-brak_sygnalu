@@ -34,6 +34,7 @@ import pl.allegro.braincode.R;
 import pl.allegro.braincode.suggestions.utils.ChartSetup;
 import pl.allegro.braincode.suggestions.utils.SuggestionOnQueryTextListener;
 import pl.allegro.braincode.suggestions.utils.SuggestionQueryHelper;
+import pl.allegro.braincode.utils.TextUtils;
 
 @Getter
 @Setter
@@ -119,7 +120,7 @@ public class GetSuggestionsFragment extends BaseFragment {
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
-                daysView.setText(prettyPrintDuration((int) e.getX()));
+                daysView.setText(TextUtils.prettyPrintDuration((int) e.getX()));
                 priceView.setText(String.valueOf(e.getY()) + " zł");
             }
 
@@ -138,30 +139,6 @@ public class GetSuggestionsFragment extends BaseFragment {
 
     public void showError(String error) {
         Snackbar.make(getView(), error, Snackbar.LENGTH_SHORT);
-    }
-
-    static String prettyPrintDuration(int days) {
-        StringBuffer stringBuffer = new StringBuffer();
-        int restDays = days;
-        if (restDays > 365) {
-            int years = restDays / 365;
-            restDays = restDays % 365;
-            stringBuffer.append(years).append(" lat, ");
-        }
-        if (restDays > 30) {
-            int months = restDays / 30;
-            restDays = restDays % 30;
-            stringBuffer.append(months).append(" miesięcy, ");
-        }
-        if (restDays > 7) {
-            int weeks = restDays / 7;
-            restDays = restDays % 7;
-            stringBuffer.append(weeks).append(" tygodni, ");
-        }
-        if (restDays > 0) {
-            stringBuffer.append(restDays).append(" dni");
-        }
-        return stringBuffer.toString();
     }
 
     @OnClick(R.id.sell_button)

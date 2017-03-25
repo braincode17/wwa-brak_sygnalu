@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import pl.allegro.braincode.R;
 import pl.allegro.braincode.activities.MainActivity;
+import pl.allegro.braincode.utils.TextUtils;
 
 public class StrategyFragment extends BaseFragment {
 
@@ -43,29 +44,7 @@ public class StrategyFragment extends BaseFragment {
         return fragment;
     }
 
-    static String prettyPrintDuration(int days) {
-        StringBuffer stringBuffer = new StringBuffer();
-        int restDays = days;
-        if (restDays > 365) {
-            int years = restDays / 365;
-            restDays = restDays % 365;
-            stringBuffer.append(years).append(" lat, ");
-        }
-        if (restDays > 30) {
-            int months = restDays / 30;
-            restDays = restDays % 30;
-            stringBuffer.append(months).append(" miesięcy, ");
-        }
-        if (restDays > 7) {
-            int weeks = restDays / 7;
-            restDays = restDays % 7;
-            stringBuffer.append(weeks).append(" tygodni, ");
-        }
-        if (restDays > 0) {
-            stringBuffer.append(restDays).append(" dni");
-        }
-        return stringBuffer.toString();
-    }
+
 
     @Override
     String getFragmentTag() {
@@ -82,7 +61,7 @@ public class StrategyFragment extends BaseFragment {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                periodTextView.setText(prettyPrintDuration(progress));
+                periodTextView.setText(TextUtils.prettyPrintDuration(progress));
             }
 
             @Override
@@ -125,7 +104,7 @@ public class StrategyFragment extends BaseFragment {
             ((MainActivity) getActivity()).showFragentWithTransition(fragment,
                     fragment.getFragmentTag(), true);
         } else {
-            Snackbar.make(getView(),"You need to select one category.",Snackbar.LENGTH_SHORT)
+            Toast.makeText(getContext(),"You need to select one category.",Toast.LENGTH_SHORT)
                     .show();
         }
     }
