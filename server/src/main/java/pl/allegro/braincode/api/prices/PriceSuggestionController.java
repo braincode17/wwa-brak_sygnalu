@@ -18,7 +18,7 @@ public class PriceSuggestionController {
     private SuggestionsService pricesService;
 
     @GetMapping
-    public Suggestion getSuggestion(@RequestParam Category category, @RequestParam String phrase) {
+    public Suggestion getSuggestion(@RequestParam Category category, @RequestParam(required = false) String phrase) {
         OffersQuery offersQuery = new OffersQuery(pl.allegro.braincode.integration.Category.valueOf(category.name()), phrase);
         return pricesService.getSuggestion(offersQuery);
     }

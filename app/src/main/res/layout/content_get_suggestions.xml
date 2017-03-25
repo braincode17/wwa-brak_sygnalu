@@ -20,6 +20,9 @@
             android:id="@+id/days"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textSize="50sp"
+            android:gravity="center"
             android:layout_weight="1"
             android:text="@string/days" />
 
@@ -27,6 +30,9 @@
             android:id="@+id/price"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="50sp"
+            android:gravity="center"
             android:text="@string/price"
             android:layout_height="match_parent" />
     </LinearLayout>

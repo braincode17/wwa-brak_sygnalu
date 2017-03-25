@@ -114,13 +114,13 @@ public class GetSuggestionsFragment extends BaseFragment {
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
-                priceView.setText(String.valueOf(e.getX()));
+                daysView.setText(String.valueOf(e.getX()));
                 priceView.setText(String.valueOf(e.getY()));
             }
 
             @Override
             public void onNothingSelected() {
-                priceView.setText("-");
+                daysView.setText("-");
                 priceView.setText("-");
             }
         });
@@ -134,7 +134,7 @@ public class GetSuggestionsFragment extends BaseFragment {
         radioFastest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chart.highlightValue(6, 0, true);
+                chart.highlightValue(fastest.getX(), 0, true);
             }
         });
         radioCustom.setOnClickListener(new View.OnClickListener() {

@@ -13,12 +13,12 @@ import pl.allegro.braincode.messages.price.Suggestion;
 public class DtoConverter {
 
     public static Entry convert(PriceDto priceDto) {
-        float price = (float) priceDto.getDaysToSell();
+        float price = priceDto.getPrice().floatValue();
         float days;
         if (priceDto.getPrice() == null) {
             days = 0f;
         } else {
-            days = priceDto.getPrice().floatValue();
+            days = priceDto.getDaysToSell();
         }
         return new Entry(days, price);
     }
