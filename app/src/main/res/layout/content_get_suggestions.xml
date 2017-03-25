@@ -4,117 +4,96 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
 
         <TextView
             android:id="@+id/days"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:textColor="@color/black"
-            android:textSize="50sp"
+            android:textSize="25sp"
             android:gravity="center"
             android:layout_weight="1"
             android:text="@string/days" />
 
         <TextView
             android:id="@+id/price"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_weight="1"
             android:textColor="@color/black"
-            android:textSize="50sp"
+            android:textSize="25sp"
             android:gravity="center"
             android:text="@string/price"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp" />
     </LinearLayout>
 
-    <LinearLayout
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_margin="6dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        style="?android:attr/buttonBarStyle">
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:weightSum="100">
 
-        <RadioGroup
-            android:id="@+id/radio_group"
-            android:layout_width="fill_parent"
+        <RadioButton
+            android:layout_weight="33"
+            android:gravity="center"
+            style="?android:attr/radioButtonStyle"
+            android:textColor="@color/black"
+            android:id="@+id/radio_highest"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp"
-            android:weightSum="100">
+            android:text="Drogo"
+            android:onClick="onRadioButtonClicked"
+            android:buttonTint="@color/green"/>
+        <RadioButton
+            android:layout_weight="34"
+            android:gravity="center"
+            style="?android:attr/radioButtonStyle"
+            android:textColor="@color/black"
+            android:id="@+id/radio_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dowolnie"
+            android:onClick="onRadioButtonClicked"
+            android:buttonTint="@color/black"/>
 
-            <RadioButton
-                android:layout_weight="33"
-                style="?android:attr/radioButtonStyle"
-                android:textColor="@color/black"
-                android:id="@+id/radio_highest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Drogo"
-                android:onClick="onRadioButtonClicked"
-                android:buttonTint="@color/green"/>
-            <RadioButton
-                android:layout_weight="34"
-                style="?android:attr/radioButtonStyle"
-                android:textColor="@color/black"
-                android:id="@+id/radio_custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dowolnie"
-                android:onClick="onRadioButtonClicked"
-                android:buttonTint="@color/yellow"/>
+        <RadioButton
+            android:layout_weight="33"
+            android:gravity="center"
+            style="?android:attr/radioButtonStyle"
+            android:textColor="@color/black"
+            android:id="@+id/radio_fastest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Szybko"
+            android:onClick="onRadioButtonClicked"
+            android:buttonTint="@color/red"/>
 
-            <RadioButton
-                android:layout_weight="33"
-                style="?android:attr/radioButtonStyle"
-                android:textColor="@color/black"
-                android:id="@+id/radio_fastest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Szybko"
-                android:onClick="onRadioButtonClicked"
-                android:buttonTint="@color/red"/>
-
-        </RadioGroup>
-
-        <!--<Button-->
-            <!--style="?android:attr/buttonBarButtonStyle"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@color/green" />-->
-
-        <!--<Button-->
-            <!--style="?android:attr/buttonBarButtonStyle"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@color/yellow"/>-->
-
-        <!--<Button-->
-            <!--style="?android:attr/buttonBarButtonStyle"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@color/red"-->
-            <!--android:stateListAnimator="@null"/>-->
-    </LinearLayout>
+    </RadioGroup>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="5dp"
         android:layout_weight="1"
-        android:background="@color/blue"
-        android:stateListAnimator="@null"
+        android:textSize="40sp"
+        android:text="Sprzedaj"
+        android:colorButtonNormal="@color/colorAccent"
         android:elevation="0dp"/>
 
 </LinearLayout>
