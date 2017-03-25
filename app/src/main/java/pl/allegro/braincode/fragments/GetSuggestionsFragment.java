@@ -30,7 +30,6 @@ import butterknife.OnClick;
 import lombok.Getter;
 import lombok.Setter;
 import pl.allegro.braincode.R;
-import pl.allegro.braincode.activities.MainActivity;
 import pl.allegro.braincode.suggestions.utils.ChartSetup;
 import pl.allegro.braincode.suggestions.utils.MockDataProvider;
 import pl.allegro.braincode.suggestions.utils.SuggestionOnQueryTextListener;
