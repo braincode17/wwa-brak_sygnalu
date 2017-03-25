@@ -34,6 +34,7 @@ import pl.allegro.braincode.activities.MainActivity;
 import pl.allegro.braincode.suggestions.utils.ChartSetup;
 import pl.allegro.braincode.suggestions.utils.MockDataProvider;
 import pl.allegro.braincode.suggestions.utils.SuggestionOnQueryTextListener;
+import pl.allegro.braincode.suggestions.utils.SuggestionQueryHelper;
 
 @Getter
 @Setter
@@ -115,8 +116,7 @@ public class GetSuggestionsFragment extends BaseFragment {
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
         ChartSetup.initSettings(chart);
-        chartValues = MockDataProvider.getData();
-        ChartSetup.setupChart(chart, ChartSetup.prepareDataForChart(chartValues));
+        SuggestionQueryHelper.query(this, null);
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
