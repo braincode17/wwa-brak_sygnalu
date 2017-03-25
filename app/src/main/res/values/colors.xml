@@ -11,6 +11,10 @@
     <color name="line_divider">#1A000000</color>
     <color name="highlight">#99CCFF</color>
     <color name="androidGreen">#8bab2e</color>
+    <color name="green">#008000</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="blue">#0000FF</color>
+    <color name="red">#FF0000</color>
     <color name="black">#212121</color>
     <color name="divider">#D9FF4081</color>
 </resources>

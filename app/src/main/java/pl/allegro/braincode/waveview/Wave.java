@@ -9,7 +9,7 @@ import android.view.animation.LinearInterpolator;
 
 public class Wave {
 
-    public static final int TIME_WAVE_ANIMATION = 1000;
+        public static final int TIME_WAVE_ANIMATION = 100;
 
     private AnimatorSet animatorSet;
     private Animator.AnimatorListener animatorListener;

@@ -15,5 +15,11 @@
             android:layout_marginTop="48dp"
             android:layout_marginBottom="48dp"/>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/row_selector"/>
+
 
 </LinearLayout>
