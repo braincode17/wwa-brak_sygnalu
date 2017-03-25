@@ -1,6 +1,5 @@
 package pl.allegro.braincode.price;
 
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.allegro.braincode.integration.OffersQuery;
@@ -11,24 +10,29 @@ import pl.allegro.braincode.messages.price.PriceDto;
 import pl.allegro.braincode.messages.price.Suggestion;
 import pl.allegro.braincode.utils.MockDataProvider;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.OptionalDouble;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
 public class SuggestionsService {
 
     private static final float EXTENDED_DAYS_RATIO = 1.2f;
+    private static final int DEFAULT_DAYS = 45;
 
     @Autowired
     private OffersRepository offersRepository;
 
-    public Suggestion getSuggestion(OffersQuery offersQuery, Integer days) {
+    public Suggestion getSuggestion(OffersQuery offersQuery, Integer days, Integer minPrice) {
+
+        if(days == null) {
+            days = DEFAULT_DAYS;
+        }
+
+        final int finalDays = days;
 
         OffersList offersList = offersRepository.getOffersList(offersQuery);
         List<Double> prices = offersList.getOffers().stream()
@@ -44,9 +48,15 @@ public class SuggestionsService {
         }
 
         OptionalDouble max = prices.stream().mapToDouble(Double::doubleValue).max();
-        OptionalDouble min = prices.stream().mapToDouble(Double::doubleValue).min();
+        OptionalDouble min;
+        if(minPrice != null) {
+            List<Double> pricesWithMin = prices.stream().filter(x -> x >= minPrice).collect(Collectors.toList());
+            min = pricesWithMin.stream().mapToDouble(Double::doubleValue).min();
+        } else {
+            min = prices.stream().mapToDouble(Double::doubleValue).min();
+        }
 
-        long extendedDays = Math.round(days * EXTENDED_DAYS_RATIO);
+        long extendedDays = Math.round(finalDays * EXTENDED_DAYS_RATIO);
 
         ArrayList<PriceDto> data = MockDataProvider.getData1((int) min.getAsDouble(), (int) max.getAsDouble(), (int) extendedDays);
         //TODO map from offers to PriceDtos
@@ -54,7 +64,7 @@ public class SuggestionsService {
 
         suggestion.setData(data);
         PriceDto bestPrice = data.stream()
-                .filter(x -> x.getDaysToSell() <= days)
+                .filter(x -> x.getDaysToSell() <= finalDays)
                 .max(Comparator.comparing(PriceDto::getPrice))
                 .orElseGet(null);
 

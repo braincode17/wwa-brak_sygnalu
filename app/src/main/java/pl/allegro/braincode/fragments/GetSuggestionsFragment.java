@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -33,7 +30,7 @@ import butterknife.OnClick;
 import lombok.Getter;
 import lombok.Setter;
 import pl.allegro.braincode.R;
-import pl.allegro.braincode.messages.category.Category;
+import pl.allegro.braincode.messages.category.CategoryDto;
 import pl.allegro.braincode.suggestions.utils.ChartSetup;
 import pl.allegro.braincode.suggestions.utils.SuggestionOnQueryTextListener;
 import pl.allegro.braincode.suggestions.utils.SuggestionQueryHelper;
@@ -129,7 +126,7 @@ public class GetSuggestionsFragment extends BaseFragment {
     @Override
     protected void onCreateFragmentView(View v, ViewGroup container, Bundle savedInstanceState) {
         Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
-
+        toolbar.setTitle(CategoryDto.valueOf(category).getName());
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         selectedPeriod.setText(TextUtils.prettyPrintDuration(getArguments()
                 .getInt(TIME_PERIOD_KEY)));
@@ -140,7 +137,7 @@ public class GetSuggestionsFragment extends BaseFragment {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 daysView.setText(TextUtils.prettyPrintDuration((int) e.getX()));
-                priceView.setText(String.valueOf(e.getY()) + " zł");
+                priceView.setText(String.format("%.2f zł", e.getY()));
             }
 
             @Override
@@ -151,7 +148,6 @@ public class GetSuggestionsFragment extends BaseFragment {
         });
         setSuggestions();
         searchView.setOnQueryTextListener(new SuggestionOnQueryTextListener(this));
-        searchView.setVoiceSearch(true);
     }
 
     @Override
@@ -171,7 +167,7 @@ public class GetSuggestionsFragment extends BaseFragment {
 
     private void setSuggestions() {
         Integer suggestions = null;
-        switch (Category.valueOf(category)) {
+        switch (CategoryDto.valueOf(category)) {
             case CARS:
                 suggestions = R.array.car_query_suggestions;
                 break;
