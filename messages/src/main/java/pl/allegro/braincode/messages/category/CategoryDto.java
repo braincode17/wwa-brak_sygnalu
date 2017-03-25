@@ -27,6 +27,10 @@ public enum CategoryDto {
         @Override
         public Map<String, String> getProperties() {
             Map<String,String> props = new HashMap<>();
+            props.put("producent","Apple");
+            props.put("stan","nowe");
+            props.put("rodzaj oferty","kup teraz");
+            props.put("pamiec","32GB");
             return props;
         }
 
@@ -39,6 +43,9 @@ public enum CategoryDto {
         @Override
         public Map<String, String> getProperties() {
             Map<String,String> props = new HashMap<>();
+            props.put("stan","uzywane");
+            props.put("rodzaj oferty","kup teraz");
+            props.put("amortyzacja","brak");
             return props;
         }
 
@@ -51,6 +58,10 @@ public enum CategoryDto {
         @Override
         public Map<String, String> getProperties() {
             Map<String,String> props = new HashMap<>();
+            props.put("rodzaj","stoliki i lawy");
+            props.put("stan","nowe");
+            props.put("rodzaj oferty","kup teraz");
+            props.put("ksztalt blatu","kawdratowy");
             return props;
         }
 
