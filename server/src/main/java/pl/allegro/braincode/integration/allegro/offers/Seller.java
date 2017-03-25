@@ -1,5 +1,8 @@
 package pl.allegro.braincode.integration.allegro.offers;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Seller {
     private Long id;
     private Boolean allegroStandard;
