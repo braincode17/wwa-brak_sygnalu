@@ -1,4 +1,4 @@
-package pl.allegro.braincode.suggestions;
+package pl.allegro.braincode.suggestions.utils;
 
 import com.github.mikephil.charting.data.Entry;
 
