@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pl.allegro.braincode.integration.Category;
 import pl.allegro.braincode.integration.OffersQuery;
-import pl.allegro.braincode.messages.category.Category;
 import pl.allegro.braincode.messages.price.Suggestion;
 import pl.allegro.braincode.price.SuggestionsService;
 
@@ -19,7 +19,7 @@ public class PriceSuggestionController {
 
     @GetMapping
     public Suggestion getSuggestion(@RequestParam Category category, @RequestParam(required = false) String phrase) {
-        OffersQuery offersQuery = new OffersQuery(pl.allegro.braincode.integration.Category.valueOf(category.name()), phrase);
+        OffersQuery offersQuery = new OffersQuery(category, phrase);
         return pricesService.getSuggestion(offersQuery);
     }
 }

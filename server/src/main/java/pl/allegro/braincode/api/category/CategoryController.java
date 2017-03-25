@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.allegro.braincode.messages.category.Category;
 import pl.allegro.braincode.category.CategoriesRepository;
+import pl.allegro.braincode.messages.category.CategoryDto;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<Category> getCategories() {
+    public List<CategoryDto> getCategories() {
         return categoriesRepository.getCategories();
     }
 

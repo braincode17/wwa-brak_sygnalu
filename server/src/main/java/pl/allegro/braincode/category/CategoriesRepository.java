@@ -1,7 +1,7 @@
 package pl.allegro.braincode.category;
 
 import org.springframework.stereotype.Service;
-import pl.allegro.braincode.messages.category.Category;
+import pl.allegro.braincode.messages.category.CategoryDto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,8 +9,8 @@ import java.util.List;
 @Service
 public class CategoriesRepository {
 
-    public List<Category> getCategories() {
-        return Arrays.asList(Category.values());
+    public List<CategoryDto> getCategories() {
+        return Arrays.asList(CategoryDto.values());
     }
 
    /* private final AuthService authService;
