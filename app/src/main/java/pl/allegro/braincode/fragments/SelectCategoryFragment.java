@@ -1,8 +1,6 @@
 package pl.allegro.braincode.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +16,7 @@ import pl.allegro.braincode.activities.MainActivity;
 import pl.allegro.braincode.adapters.DividerItemDecor;
 import pl.allegro.braincode.adapters.RecyclerViewAdapter;
 
-public class SelectCategoryFragment extends BaseFragment implements OnChooseList {
+public class SelectCategoryFragment extends BaseFragment implements OnChooseListener {
 
     @BindView(R.id.recycler)
     RecyclerView recyclerView;

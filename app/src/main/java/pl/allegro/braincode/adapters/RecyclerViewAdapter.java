@@ -12,14 +12,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.allegro.braincode.R;
-import pl.allegro.braincode.fragments.OnChooseList;
+import pl.allegro.braincode.fragments.OnChooseListener;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> {
 
     private List<String> tasks;
-    private OnChooseList listener;
+    private OnChooseListener listener;
 
-    public RecyclerViewAdapter(List<String> tasks, OnChooseList listener) {
+    public RecyclerViewAdapter(List<String> tasks, OnChooseListener listener) {
         this.tasks = tasks;
         this.listener = listener;
     }
@@ -45,9 +45,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @BindView(R.id.todo_title)
         TextView title;
 
-        OnChooseList list;
+        OnChooseListener list;
 
-        public CustomViewHolder(View itemView, OnChooseList listener) {
+        public CustomViewHolder(View itemView, OnChooseListener listener) {
             super(itemView);
             this.list = listener;
             ButterKnife.bind(this, itemView);
