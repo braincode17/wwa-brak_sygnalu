@@ -8,19 +8,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pl.allegro.braincode.activities.MainActivity;
+import com.ToxicBakery.viewpager.transforms.CubeOutTransformer;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.relex.circleindicator.CircleIndicator;
 import pl.allegro.braincode.R;
+import pl.allegro.braincode.activities.MainActivity;
 
 public class PagerFragment extends Fragment {
 
-    private MainActivity activity;
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
+    @BindView(R.id.indicator)
+    CircleIndicator circleIndicator;
 
+    private MainActivity activity;
 
     public static PagerFragment newInstance() {
         PagerFragment fragment = new PagerFragment();
-
         return fragment;
     }
 
@@ -40,6 +46,7 @@ public class PagerFragment extends Fragment {
             @Nullable Bundle savedInstanceState) {
         activity = (MainActivity) getActivity();
         View view = inflater.inflate(R.layout.fragment_pager, container, false);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -49,10 +56,9 @@ public class PagerFragment extends Fragment {
     }
 
     @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        ViewPager viewpager = (ViewPager) view.findViewById(R.id.viewpager);
-        CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
-        viewpager.setAdapter(new SuggestionsFragmentPagerAdapter(getChildFragmentManager()));
-        indicator.setViewPager(viewpager);
+        viewPager.setAdapter(new SuggestionsFragmentPagerAdapter(getChildFragmentManager()));
+        viewPager.setPageTransformer(true, new CubeOutTransformer());
+        circleIndicator.setViewPager(viewPager);
     }
 
     @Override
