@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -52,15 +53,10 @@ public class GetSuggestionsFragment extends BaseFragment {
     @BindView(R.id.price)
     TextView priceView;
 
-    @BindView(R.id.radio_group)
-    RadioGroup radioGroup;
-
-    @BindView(R.id.radio_fastest)
-    RadioButton radioFastest;
-    @BindView(R.id.radio_custom)
-    RadioButton radioCustom;
-    @BindView(R.id.radio_highest)
-    RadioButton radioHighest;
+    @BindView(R.id.selected_strategy)
+    ImageView selectedStrategy;
+    @BindView(R.id.selected_period)
+    TextView selectedPeriod;
 
     @BindView(R.id.sell_button)
     Button sellButton;
@@ -134,24 +130,6 @@ public class GetSuggestionsFragment extends BaseFragment {
             }
         });
         searchView.setOnQueryTextListener(new SuggestionOnQueryTextListener(this));
-        radioHighest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chart.highlightValue(bestPrice.getX(), 0, true);
-            }
-        });
-        radioFastest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chart.highlightValue(fastest.getX(), 0, true);
-            }
-        });
-        radioCustom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chart.highlightValue(fastest.getX(), 0, true);
-            }
-        });
     }
 
     @Override
