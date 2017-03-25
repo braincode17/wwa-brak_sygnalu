@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import pl.allegro.braincode.R;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -51,6 +52,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(getFragmentContainer(), fragment, tag);
         if (addToBackStop)
+            transaction.addToBackStack(tag);
+        transaction.commitAllowingStateLoss();
+    }
+
+    public void showFragentWithTransition(Fragment fragment, String tag,
+                                          boolean addToBackStack){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(android.R.anim.slide_in_left,
+                android.R.anim.slide_out_right);
+        transaction.replace(getFragmentContainer(), fragment, tag);
+        if (addToBackStack)
             transaction.addToBackStack(tag);
         transaction.commitAllowingStateLoss();
     }
