@@ -37,7 +37,7 @@ public class SuggestionsService {
 
         OptionalDouble max = prices.stream().mapToDouble(Double::doubleValue).max();
         OptionalDouble min = prices.stream().mapToDouble(Double::doubleValue).min();
-        ArrayList<PriceDto> data = MockDataProvider.getDataExp((int) min.getAsDouble(), (int) max.getAsDouble(), 90);
+        ArrayList<PriceDto> data = MockDataProvider.getData1((int) min.getAsDouble(), (int) max.getAsDouble(), 45);
         //TODO map from offers to PriceDtos
         //TODO fill gaps in data
 
