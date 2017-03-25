@@ -24,7 +24,7 @@ public class OffersQuery {
         params.put("country.code", "PL");
 
         //TODO hack ;p
-        if (phrase != null) {
+        if (phrase == null) {
             phrase="a";
         }
         params.put("phrase", phrase);

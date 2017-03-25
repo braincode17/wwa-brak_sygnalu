@@ -39,4 +39,23 @@ public class MockDataProvider {
         }
         return yVals;
     }
+
+    public static ArrayList<PriceDto> getData1(int min, int max, int count) {
+        ArrayList<PriceDto> yVals = new ArrayList<PriceDto>();
+        Random random = new Random();
+        for (int i = 0; i < count; i++) {
+            double baseVal = max/count * i;
+            double distortion = 2 * baseVal * random.nextDouble() - baseVal;
+            double adjustedDistortion = 0.2 * distortion;
+            double chosen;
+            if(baseVal - adjustedDistortion < 0 || baseVal - adjustedDistortion > max) {
+                chosen = baseVal;
+            } else {
+                chosen = baseVal - adjustedDistortion;
+            }
+            yVals.add(new PriceDto(i, BigDecimal.valueOf(chosen)));
+
+        }
+        return yVals;
+    }
 }
