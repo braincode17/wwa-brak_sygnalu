@@ -57,6 +57,6 @@ public class SelectCategoryFragment extends BaseFragment implements OnChooseList
     public void choose(int id) {
         //Transaction
         BaseFragment fragment = GetSuggestionsFragment.newInstance();
-        ((MainActivity) getActivity()).showFragment(fragment, fragment.getFragmentTag());
+        ((MainActivity) getActivity()).showFragment(fragment, fragment.getFragmentTag(), true);
     }
 }

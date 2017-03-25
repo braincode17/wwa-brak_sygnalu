@@ -4,4 +4,8 @@
     <string name="search">Search</string>
     <string name="under_title">byBrakSygnału</string>
     <string name="title">AllegroTracker</string>
+    <string name="sell_for">Sell for</string>
+    <string name="sell_in">Sell in</string>
+    <string name="days">Dni</string>
+    <string name="price">Cena</string>
 </resources>

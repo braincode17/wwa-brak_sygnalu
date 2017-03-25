@@ -37,6 +37,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     compile 'org.projectlombok:lombok:1.16.6'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    compile 'com.miguelcatalan:materialsearchview:1.4.0'
 
     testCompile 'junit:junit:4.12'
 }
