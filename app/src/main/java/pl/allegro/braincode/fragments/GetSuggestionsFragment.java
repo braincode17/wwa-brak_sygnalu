@@ -151,7 +151,6 @@ public class GetSuggestionsFragment extends BaseFragment {
         });
         setSuggestions();
         searchView.setOnQueryTextListener(new SuggestionOnQueryTextListener(this));
-        searchView.setVoiceSearch(true);
     }
 
     @Override
