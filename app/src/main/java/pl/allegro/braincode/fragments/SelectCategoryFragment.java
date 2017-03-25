@@ -20,7 +20,7 @@ public class SelectCategoryFragment extends BaseFragment implements OnChooseList
 
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
-        List<String> kek = Arrays.asList("lel","wooo","hoho","haha",
+    List<String> kek = Arrays.asList("lel","wooo","hoho","haha",
                 "lel","wooo","hoho","haha","kek2", "kekr3");
 
     private LinearLayoutManager  linearLayoutManager;

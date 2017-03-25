@@ -3,32 +3,23 @@ package pl.allegro.braincode.fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import pl.allegro.braincode.activities.BaseActivity;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.listener.ChartTouchListener;
-import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
 
-import pl.allegro.braincode.activities.MainActivity;
 import pl.allegro.braincode.R;
 
 public class GetSuggestionsFragment extends BaseFragment {
@@ -37,7 +28,6 @@ public class GetSuggestionsFragment extends BaseFragment {
     private MaterialSearchView searchView;
 
     private ArrayList<Entry> chartValues = new ArrayList<Entry>();
-
 
     public static GetSuggestionsFragment newInstance() {
         GetSuggestionsFragment fragment = new GetSuggestionsFragment();
@@ -75,24 +65,11 @@ public class GetSuggestionsFragment extends BaseFragment {
 
     @Override
     protected void onCreateFragmentView(View v, ViewGroup container, Bundle savedInstanceState) {
-    }
-
-    @Override
-    protected void onViewsFragment(View view, Bundle savedInstanceState) {
-
-    }
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_get_suggestions, container, false);
-
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
-
-        chart = (LineChart) view.findViewById(R.id.chart);
-
+        chart = (LineChart) v.findViewById(R.id.chart);
 
         LineData data = getData(36, 100);
 //        mTf = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
@@ -100,7 +77,7 @@ public class GetSuggestionsFragment extends BaseFragment {
 
         // add some transparency to the color with "& 0x90FFFFFF"
         setupChart(chart, data, Color.rgb(250, 104, 104));
-        searchView = (MaterialSearchView) view.findViewById(R.id.search_view);
+        searchView = (MaterialSearchView) v.findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -127,10 +104,11 @@ public class GetSuggestionsFragment extends BaseFragment {
                 //Do some magic
             }
         });
-
-        return view;
     }
 
+    @Override
+    protected void onViewsFragment(View view, Bundle savedInstanceState) {
+    }
 
     private void setupChart(LineChart chart, LineData data, int color) {
 
@@ -204,12 +182,5 @@ public class GetSuggestionsFragment extends BaseFragment {
         LineData data = new LineData(set1);
 
         return data;
-    }
-
-    private void showMessageIfViewExists(String message, View view) {
-        if(view != null) {
-            Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
-                    .show();
-        }
     }
 }

@@ -47,26 +47,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void runActivity(Class<?> className, Bundle bundle) {
-        Intent i = new Intent(this, className);
-        i.putExtras(bundle);
-        startActivity(i);
-    }
-
-    public void runActivityForResult(Class<?> className, Bundle bundle, int request) {
-        Intent i = new Intent(this, className);
-        i.putExtras(bundle);
-        startActivityForResult(i, request);
-    }
-
-    public void showFragment(Fragment fragment, String tag) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(getFragmentContainer(), fragment, tag);
-        transaction.addToBackStack(tag);
-        transaction.commitAllowingStateLoss();
-    }
-
-
     public void showFragment(Fragment fragment, String tag, boolean addToBackStop) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(getFragmentContainer(), fragment, tag);
@@ -75,21 +55,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         transaction.commitAllowingStateLoss();
     }
 
-
-    public void showChildFragment(FragmentManager fragmentManager, Fragment fragment, String tag, int id) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        transaction.replace(id, fragment, tag);
-        transaction.addToBackStack(tag);
-        transaction.commitAllowingStateLoss();
-    }
-
-    public void removeFragment(Fragment frag) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.remove(frag);
-        transaction.commitAllowingStateLoss();
-    }
-
     protected abstract boolean onActivityBackPressed();
-
 }

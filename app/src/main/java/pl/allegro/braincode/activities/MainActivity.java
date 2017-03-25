@@ -29,10 +29,8 @@ public class MainActivity extends BaseActivity {
         return false;
     }
 
-
     void showStartFragment() {
         SelectCategoryFragment fragment = SelectCategoryFragment.newInstance();
         showFragment(fragment, fragment.getFragmentTag(), false);
     }
-
 }

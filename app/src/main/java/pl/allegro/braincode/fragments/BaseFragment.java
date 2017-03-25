@@ -22,13 +22,6 @@ public abstract class BaseFragment extends Fragment {
 
     abstract String getFragmentTag();
 
-    public void addFragment(FragmentManager support, int layout, String fragmentTag, boolean addToBackStack) {
-        FragmentTransaction ft = support.beginTransaction();
-        ft.replace(layout, this, fragmentTag);
-        if (addToBackStack) ft.addToBackStack(null);
-        ft.commit();
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
