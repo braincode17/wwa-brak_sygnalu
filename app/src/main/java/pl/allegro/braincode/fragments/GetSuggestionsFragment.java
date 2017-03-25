@@ -1,5 +1,7 @@
 package pl.allegro.braincode.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -10,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,9 +26,11 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import lombok.Getter;
 import lombok.Setter;
 import pl.allegro.braincode.R;
+import pl.allegro.braincode.activities.MainActivity;
 import pl.allegro.braincode.suggestions.utils.ChartSetup;
 import pl.allegro.braincode.suggestions.utils.MockDataProvider;
 import pl.allegro.braincode.suggestions.utils.SuggestionOnQueryTextListener;
@@ -55,6 +60,9 @@ public class GetSuggestionsFragment extends BaseFragment {
     RadioButton radioCustom;
     @BindView(R.id.radio_highest)
     RadioButton radioHighest;
+
+    @BindView(R.id.sell_button)
+    Button sellButton;
 
     private List<Entry> chartValues;
     private Entry bestPrice;
@@ -173,5 +181,12 @@ public class GetSuggestionsFragment extends BaseFragment {
             stringBuffer.append(restDays).append(" dni");
         }
         return stringBuffer.toString();
+    }
+
+    @OnClick(R.id.sell_button)
+    public void sell(){
+        Uri uriUrl = Uri.parse("https://allegro.pl/");
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
     }
 }
