@@ -50,6 +50,8 @@ public class GetSuggestionsFragment extends BaseFragment {
     @BindView(R.id.search_view)
     MaterialSearchView searchView;
 
+    @BindView(R.id.minmaxtext)
+    TextView minMaxText;
     @BindView(R.id.days)
     TextView daysView;
     @BindView(R.id.price)
@@ -77,8 +79,12 @@ public class GetSuggestionsFragment extends BaseFragment {
         Bundle bundle = new Bundle();
         bundle.putString(CATEGORY_KEY, category);
         bundle.putString(USERS_DECISION_KEY, usersDecision);
-        bundle.putInt(TIME_PERIOD_KEY, time);
-        bundle.putInt(MIN_PRICE_KEY, minPrice);
+        if (time != null) {
+            bundle.putInt(TIME_PERIOD_KEY, time);
+        }
+        if (minPrice != null) {
+            bundle.putInt(MIN_PRICE_KEY, minPrice);
+        }
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -95,9 +101,11 @@ public class GetSuggestionsFragment extends BaseFragment {
 
     public void loadImage(String strategy) {
         if (strategy.equals("money")) {
+            minMaxText.setText("MAX");
             selectedStrategy.setImageDrawable(getResources()
                     .getDrawable(R.drawable.ic_attach_money_black_48dp, null));
         } else if (strategy.equals("time")) {
+            minMaxText.setText("MIN");
             selectedStrategy.setImageDrawable(getResources()
                     .getDrawable(R.drawable.ic_timer_black_48dp, null));
         }
@@ -135,9 +143,13 @@ public class GetSuggestionsFragment extends BaseFragment {
         Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
         toolbar.setTitle(CategoryDto.valueOf(category).getName());
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        selectedPeriod.setText(TextUtils.prettyPrintDuration(getArguments()
-                .getInt(TIME_PERIOD_KEY)));
-        loadImage(getArguments().getString(USERS_DECISION_KEY));
+        String string = getArguments().getString(USERS_DECISION_KEY);
+        if (string.equals("money")) {
+            selectedPeriod.setText(TextUtils.prettyPrintDuration(getArguments().getInt(TIME_PERIOD_KEY)));
+        } else {
+            selectedPeriod.setText(getArguments().getInt(MIN_PRICE_KEY) + " zł");
+        }
+        loadImage(string);
         ChartSetup.initSettings(chart);
         if(strategy.equals("money")) {
             SuggestionQueryHelper.query(this, null, days, null);

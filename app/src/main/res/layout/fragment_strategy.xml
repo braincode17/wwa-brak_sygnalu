@@ -60,6 +60,8 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/money_strategy_selector"
+        android:visibility="gone"
         android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -86,6 +88,30 @@
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/time_strategy_selector"
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/time_money_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Minimalna kwota" />
+
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
