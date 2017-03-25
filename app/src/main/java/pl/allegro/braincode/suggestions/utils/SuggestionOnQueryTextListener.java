@@ -29,7 +29,7 @@ public class SuggestionOnQueryTextListener implements MaterialSearchView.OnQuery
         fragment.setChartValues(data);
         ChartSetup.setupChart(fragment.getChart(), ChartSetup.prepareDataForChart(data));*/
         //rest query saving data to chartValues an updating
-        ServiceProvider.INSTANCE.getServerService().getPrices(Category.CARS, query).enqueue(new Callback<Suggestion>() {
+        ServiceProvider.INSTANCE.getServerService().getPrices(fragment.getCategory(), query).enqueue(new Callback<Suggestion>() {
             @Override
             public void onResponse(Call<Suggestion> call, Response<Suggestion> response) {
                 if(response.body() != null) {
