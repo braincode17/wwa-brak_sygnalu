@@ -1,10 +1,16 @@
 package pl.allegro.braincode.fragments;
 
+import android.media.Image;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -19,9 +25,15 @@ public class StrategyFragment extends BaseFragment {
     SeekBar seekBar;
 
     @BindView(R.id.period_text_view)
-    TextView perdioTextView;
+    TextView periodTextView;
 
-    private String usersStrategy;
+    @BindView(R.id.money_button)
+    ImageButton moneyButton;
+
+    @BindView(R.id.time_button)
+    ImageButton timeButton;
+
+    private String userStrategy;
 
     public static StrategyFragment newInstance(String category) {
         StrategyFragment fragment = new StrategyFragment();
@@ -29,41 +41,6 @@ public class StrategyFragment extends BaseFragment {
         bundle.putString(CATEGORY_KEY, category);
         fragment.setArguments(bundle);
         return fragment;
-    }
-
-    @Override
-    String getFragmentTag() {
-        return this.getClass().getName();
-    }
-
-    @Override
-    protected int onFragmentContentView() {
-        return R.layout.fragment_strategy;
-    }
-
-    @Override
-    protected void onCreateFragmentView(View v, ViewGroup container, Bundle savedInstanceState) {
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                perdioTextView.setText(prettyPrintDuration(progress));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-    }
-
-    @Override
-    protected void onViewsFragment(View view, Bundle savedInstanceState) {
-
     }
 
     static String prettyPrintDuration(int days) {
@@ -90,21 +67,66 @@ public class StrategyFragment extends BaseFragment {
         return stringBuffer.toString();
     }
 
-@OnClick(R.id.money_button)
-public void chooseMoney(){
-    usersStrategy = "money";
-}
+    @Override
+    String getFragmentTag() {
+        return this.getClass().getName();
+    }
+
+    @Override
+    protected int onFragmentContentView() {
+        return R.layout.fragment_strategy;
+    }
+
+    @Override
+    protected void onCreateFragmentView(View v, ViewGroup container, Bundle savedInstanceState) {
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                periodTextView.setText(prettyPrintDuration(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onViewsFragment(View view, Bundle savedInstanceState) {
+
+    }
+
+    @OnClick(R.id.money_button)
+    public void chooseMoney() {
+        userStrategy = "money";
+        moneyButton.setAlpha(1F);
+        timeButton.setAlpha(0.2F);
+    }
 
     @OnClick(R.id.time_button)
-    public void chooseTime(){
-        usersStrategy = "time";
+    public void chooseTime() {
+        userStrategy = "time";
+        timeButton.setAlpha(1F);
+        moneyButton.setAlpha(0.2F);
     }
+
     @OnClick(R.id.proceed_button)
-    public void proceed(){
-        BaseFragment fragment = GetSuggestionsFragment.newInstance(
-                getArguments().getString(CATEGORY_KEY),usersStrategy,
-                seekBar.getProgress());
-        ((MainActivity) getActivity()).showFragentWithTransition(fragment,
-                fragment.getFragmentTag(), true);
+    public void proceed() {
+        if (userStrategy!=null) {
+            BaseFragment fragment = GetSuggestionsFragment.newInstance(
+                    getArguments().getString(CATEGORY_KEY), userStrategy,
+                    seekBar.getProgress());
+            ((MainActivity) getActivity()).showFragentWithTransition(fragment,
+                    fragment.getFragmentTag(), true);
+        } else {
+            Snackbar.make(getView(),"You need to select one category.",Snackbar.LENGTH_SHORT)
+                    .show();
+        }
     }
 }
