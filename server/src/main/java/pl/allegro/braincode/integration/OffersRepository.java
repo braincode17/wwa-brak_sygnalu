@@ -18,10 +18,10 @@ public class OffersRepository {
 
     private final OffersService service = PublicServiceGenerator.createService(OffersService.class);
 
-    public OffersList getOffersList(String countryCode, String phrase) {
+    public OffersList getOffersList(OffersQuery offersQuery) {
         try {
             return service
-                    .offers(countryCode, phrase)
+                    .offers("PL", "","",null)
                     .execute()
                     .body();
         } catch (IOException e) {

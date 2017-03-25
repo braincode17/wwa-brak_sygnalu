@@ -1,23 +1,30 @@
 package pl.allegro.braincode.api.prices;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pl.allegro.braincode.integration.OffersQuery;
+import pl.allegro.braincode.messages.category.Category;
+import pl.allegro.braincode.messages.price.PriceDto;
+import pl.allegro.braincode.price.PricesService;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping("/prices")
 public class PricesController {
 
+    @Autowired
+    private PricesService pricesService;
+
     @GetMapping
-    public Map<Integer,Long> getPrices(){
-        Map<Integer,Long> prices = new HashMap<>();
-        prices.put(1,3L);
-        prices.put(2,3L);
-        prices.put(3,30L);
-        prices.put(4,35L);
-        return prices;
+    public List<PriceDto> getPrices(@RequestParam Category category, String phrase) {
+
+        OffersQuery offersQuery = OffersQueryFactory.from(category, phrase);
+
+        pricesService.getPrices(offersQuery);
+        return null;
     }
 }

@@ -1,19 +1,19 @@
 package pl.allegro.braincode.category;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.allegro.braincode.integration.allegro.auth.AuthService;
-import pl.allegro.braincode.integration.allegro.auth.ServiceGenerator;
-import pl.allegro.braincode.integration.allegro.category.CategoriesService;
-import pl.allegro.braincode.integration.allegro.category.Category;
+import pl.allegro.braincode.messages.category.Category;
 
-import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class CategoriesRepository {
 
-    private final AuthService authService;
+    public List<Category> getCategories() {
+        return Arrays.asList(Category.values());
+    }
+
+   /* private final AuthService authService;
     private CategoriesService service = ServiceGenerator.createService(CategoriesService.class);
 
     @Autowired
@@ -31,6 +31,6 @@ public class CategoriesRepository {
         } catch (IOException e) {
             throw new RuntimeException("Error during getting categories", e);
         }
-    }
+    }*/
 
 }

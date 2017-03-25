@@ -8,7 +8,7 @@ import pl.allegro.braincode.integration.allegro.category.Category;
 import java.util.List;
 
 public class CategoriesRepositoryTest {
-
+/*
     @Test
     public void shouldGetMainCategoriesList() throws Exception {
         CategoriesRepository categoriesRepository = new CategoriesRepository(new AuthService());
@@ -23,6 +23,6 @@ public class CategoriesRepositoryTest {
         List<Category> categories = categoriesRepository.getCategories(26013L);
         System.out.println(categories.size());
 
-    }
+    }*/
 
 }
