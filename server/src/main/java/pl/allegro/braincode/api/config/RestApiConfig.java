@@ -1,11 +1,8 @@
 package pl.allegro.braincode.api.config;
 
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -30,15 +27,4 @@ public class RestApiConfig {
         return new ModelMapper();
     }
 
-    @Autowired
-    public void configeJackson(Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder) {
-        jackson2ObjectMapperBuilder.modules(new JavaTimeModule());
-    }
-
-//    @Bean
-//    public ObjectMapper objectMapper(){
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.registerModule();
-//        return objectMapper;
-//    }
 }
