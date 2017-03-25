@@ -3,8 +3,16 @@ package pl.allegro.braincode.messages.price;
 import java.math.BigDecimal;
 
 public class PriceDto {
-    int daysToSell;
-    BigDecimal price;
+    private int daysToSell;
+    private BigDecimal price;
+
+    public PriceDto() {
+    }
+
+    public PriceDto(int daysToSell, BigDecimal price) {
+        this.daysToSell = daysToSell;
+        this.price = price;
+    }
 
     public int getDaysToSell() {
         return daysToSell;

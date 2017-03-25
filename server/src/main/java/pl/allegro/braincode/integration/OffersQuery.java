@@ -21,7 +21,12 @@ public class OffersQuery {
                     String[] kv = s.split("=");
                     params.put(kv[0], kv[1]);
                 });
-        params.put("phrase",phrase);
+        params.put("country.code", "PL");
+
+        if (phrase != null) {
+            params.put("phrase", phrase);
+        }
+
         return params;
     }
 }

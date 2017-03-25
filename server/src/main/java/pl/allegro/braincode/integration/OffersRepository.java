@@ -1,17 +1,11 @@
 package pl.allegro.braincode.integration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.allegro.braincode.integration.allegro.auth.AuthService;
 import pl.allegro.braincode.integration.allegro.auth.PublicServiceGenerator;
-import pl.allegro.braincode.integration.allegro.auth.ServiceGenerator;
-import pl.allegro.braincode.integration.allegro.category.CategoriesService;
-import pl.allegro.braincode.integration.allegro.category.Category;
 import pl.allegro.braincode.integration.allegro.offers.OffersList;
 import pl.allegro.braincode.integration.allegro.offers.OffersService;
 
 import java.io.IOException;
-import java.util.List;
 
 @Service
 public class OffersRepository {
@@ -21,7 +15,7 @@ public class OffersRepository {
     public OffersList getOffersList(OffersQuery offersQuery) {
         try {
             return service
-                    .offers("PL", "","",null)
+                    .offers(offersQuery.getQueryParams())
                     .execute()
                     .body();
         } catch (IOException e) {
