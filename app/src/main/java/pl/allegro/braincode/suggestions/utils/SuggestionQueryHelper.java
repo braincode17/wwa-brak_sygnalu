@@ -16,7 +16,7 @@ public class SuggestionQueryHelper {
         ServiceProvider.INSTANCE.getServerService().getPrices(fragment.getCategory(), query, days).enqueue(new Callback<Suggestion>() {
             @Override
             public void onResponse(Call<Suggestion> call, Response<Suggestion> response) {
-                if(response.body() != null) {
+                if(response.body() != null && response.body() != null) {
                     List<Entry> entries = DtoConverter.convert(response.body());
                     fragment.setChartValues(entries);
                     ChartSetup.setupChart(fragment.getChart(), ChartSetup.prepareDataForChart(entries));
@@ -27,6 +27,8 @@ public class SuggestionQueryHelper {
                     } else {
                         fragment.getChart().highlightValue(fragment.getFastest().getX(), 0, true);
                     }
+                } else {
+                    fragment.showError("No data found.");
                 }
             }
 

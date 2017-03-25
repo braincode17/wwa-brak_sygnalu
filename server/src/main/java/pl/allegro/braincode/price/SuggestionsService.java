@@ -37,6 +37,12 @@ public class SuggestionsService {
                 .map(Price::getAmount)
                 .collect(Collectors.toList());
 
+        Suggestion suggestion = new Suggestion();
+
+        if(prices == null || prices.isEmpty()) {
+            return suggestion;
+        }
+
         OptionalDouble max = prices.stream().mapToDouble(Double::doubleValue).max();
         OptionalDouble min = prices.stream().mapToDouble(Double::doubleValue).min();
 
@@ -46,7 +52,6 @@ public class SuggestionsService {
         //TODO map from offers to PriceDtos
         //TODO fill gaps in data
 
-        Suggestion suggestion = new Suggestion();
         suggestion.setData(data);
         PriceDto bestPrice = data.stream()
                 .filter(x -> x.getDaysToSell() <= days)
