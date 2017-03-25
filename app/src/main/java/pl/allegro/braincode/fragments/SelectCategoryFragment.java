@@ -76,7 +76,7 @@ public class SelectCategoryFragment extends BaseFragment implements OnChooseList
     @Override
     public void choose(int id) {
         //Transaction
-        BaseFragment fragment = GetSuggestionsFragment.newInstance(categories.get(id));
+        BaseFragment fragment = StrategyFragment.newInstance(categories.get(id));
         ((MainActivity) getActivity()).showFragentWithTransition(fragment,
                 fragment.getFragmentTag(), true);
     }

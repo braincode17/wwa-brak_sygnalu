@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:weightSum="6"
+    android:weightSum="7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
@@ -33,10 +33,11 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/money_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:src="@mipmap/orange_icon"/>
+                android:src="@drawable/ic_attach_money_white_48dp"/>
 
             <TextView
                 android:layout_margin="10dp"
@@ -46,21 +47,30 @@
                 android:text="CZY"/>
 
             <ImageButton
+                android:id="@+id/time_button"
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/orange_icon"/>
+                android:src="@drawable/ic_timer_white_48dp"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:gravity="center">
+
+        <TextView
+            android:id="@+id/period_text_view"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Maksymalny czas oczekiwania"/>
 
         <TextView
             android:layout_margin="10dp"
@@ -70,6 +80,7 @@
             android:text="1 miesiąc, 3 tygodnie i 2 dni"/>
 
         <SeekBar
+            android:id="@+id/seek_bar"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -83,6 +94,7 @@
         android:gravity="center">
 
         <Button
+            android:id="@+id/proceed_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dalej"/>
