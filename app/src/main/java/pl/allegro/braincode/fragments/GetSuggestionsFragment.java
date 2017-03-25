@@ -29,8 +29,11 @@ public class GetSuggestionsFragment extends BaseFragment {
 
     private ArrayList<Entry> chartValues = new ArrayList<Entry>();
 
-    public static GetSuggestionsFragment newInstance() {
+    public static GetSuggestionsFragment newInstance(String category) {
         GetSuggestionsFragment fragment = new GetSuggestionsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("category", category);
+        fragment.setArguments(bundle);
         return fragment;
     }
 

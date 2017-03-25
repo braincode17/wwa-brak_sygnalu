@@ -16,11 +16,11 @@ import pl.allegro.braincode.fragments.OnChooseListener;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> {
 
-    private List<String> tasks;
+    private List<String> categories;
     private OnChooseListener listener;
 
-    public RecyclerViewAdapter(List<String> tasks, OnChooseListener listener) {
-        this.tasks = tasks;
+    public RecyclerViewAdapter(List<String> categories, OnChooseListener listener) {
+        this.categories = categories;
         this.listener = listener;
     }
 
@@ -32,17 +32,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-        holder.title.setText("Category");
+        holder.title.setText(categories.get(position));
     }
 
     @Override
     public int getItemCount() {
-        if (tasks == null) return 0;
-        return tasks.size();
+        if (categories == null) return 0;
+        return categories.size();
     }
 
     static class CustomViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.todo_title)
+        @BindView(R.id.category_name)
         TextView title;
 
         OnChooseListener list;
@@ -53,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             ButterKnife.bind(this, itemView);
         }
 
-        @OnClick(R.id.todo_title)
+        @OnClick(R.id.category_name)
         public void click(){
             list.choose(getAdapterPosition());
         }
